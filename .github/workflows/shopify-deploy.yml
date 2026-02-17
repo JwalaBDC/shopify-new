@@ -20,11 +20,11 @@ jobs:
 
       - name: Push theme to Shopify
         env:
-          SHOPIFY_STORE: jwala-new.myshopify.com
           SHOPIFY_CLI_THEME_ACCESS_PASSWORD: ${{ secrets.SHOPIFY_CLI_THEME_ACCESS_PASSWORD }}
         run: |
           shopify theme push \
             --store jwala-new.myshopify.com \
             --theme 155327365269 \
             --path . \
-            --allow-live
+            --allow-live \
+            --password "$SHOPIFY_CLI_THEME_ACCESS_PASSWORD"
