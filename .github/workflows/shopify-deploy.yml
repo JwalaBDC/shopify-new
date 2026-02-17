@@ -15,22 +15,16 @@ jobs:
         with:
           node-version: 20
 
-      - run: npm install -g @shopify/cli @shopify/theme
+      - name: Install Shopify CLI
+        run: npm install -g @shopify/cli @shopify/theme
 
-      - name: Confirm secret injection
+      - name: Push theme to Shopify
         env:
+          SHOPIFY_STORE: jwala-new.myshopify.com
           SHOPIFY_CLI_THEME_ACCESS_PASSWORD: ${{ secrets.SHOPIFY_CLI_THEME_ACCESS_PASSWORD }}
         run: |
-          if [ -z "$SHOPIFY_CLI_THEME_ACCESS_PASSWORD" ]; then
-            echo "❌ SECRET NOT INJECTED"
-            exit 1
-          else
-            echo "✅ SECRET FOUND"
-          fi
-
-      - name: Push theme
-        env:
-          SHOPIFY_FLAG_STORE: jwala-new.myshopify.com
-          SHOPIFY_CLI_THEME_ACCESS_PASSWORD: ${{ secrets.SHOPIFY_CLI_THEME_ACCESS_PASSWORD }}
-        run: |
-          shopify theme push --theme 155327365269 --path . --allow-live
+          shopify theme push \
+            --store jwala-new.myshopify.com \
+            --theme 155327365269 \
+            --path . \
+            --allow-live
