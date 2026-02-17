@@ -1,0 +1,32 @@
+name: Deploy Shopify Theme
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install Shopify CLI
+        run: npm install -g @shopify/cli @shopify/theme
+
+      - name: Deploy theme to Shopify (Dev Theme)
+        env:
+          SHOPIFY_CLI_AUTH_TOKEN: ${{ secrets.SHOPIFY_CLI_AUTH_TOKEN }}
+        run: |
+          shopify theme push \
+            --store jwala-new.myshopify.com \
+            --theme 155327365269 \
+            --allow-live=false \
+            --path .
