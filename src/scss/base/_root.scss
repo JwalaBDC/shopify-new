@@ -1,0 +1,27 @@
+@use "../abstracts/index" as *;
+:root {
+	--w-viewport: 100vw;
+	--h-viewport: 100vh;
+	--w-max: 1600px;
+	--h-header: 72px;
+	--h-secondary-menu: 58px;
+	--h-filtersMenu: 48px;
+	--h-tablist: 48px;
+	--h-stickyMenu: 63px;
+	--h-input-field: 54px;
+	--h-search-textbox: 68px;
+}
+@include media("<sm") {
+	:root {
+		--w-max: 100%;
+		--h-header: 52px;
+		--h-secondary-menu: 46px;
+		--h-filtersMenu: 45px;
+		--h-tablist: 45px;
+		--h-search-textbox: 52px;
+	}
+}
+
+.sr-only {
+	@include sr-only;
+}

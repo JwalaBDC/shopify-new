@@ -1,0 +1,73 @@
+//Stagger Group Motion
+// @use "@abstracts" as *;
+// @use "@motion-abstracts" as motion;
+//Fade
+[data-motion-observer="css-class"][data-motion-observer-classes="fade-images-in"] {
+	transform: translateY(120px);
+	@include media("<sm") {
+		transform: translateY(90px);
+	}
+	[data-motion-image] {
+		opacity: 0;
+	}
+	&.fade-images-in {
+		transform: none;
+		transition: transform 350ms var(--standard-decelerate);
+		[data-motion-image] {
+			transition: opacity 500ms var(--standard-decelerate) 100ms;
+			opacity: 1;
+		}
+	}
+}
+//Scale
+[data-motion-observer="css-class"][data-motion-observer-classes="scale-img-in"] {
+	&.scale-img-in__wrapper,
+	.scale-img-in__wrapper {
+		overflow: hidden;
+	}
+	.scale-img-in__img {
+		opacity: 0;
+		transform: scale(1.08);
+	}
+	&.scale-img-in {
+		.scale-img-in__img {
+			transform: none;
+			opacity: 1;
+			transition: opacity 0.5s var(--quad-decelerate), transform 0.5s var(--quad-decelerate);
+		}
+	}
+}
+[data-motion-observer="css-class"][data-motion-observer-classes="img-reveal-rtl"] {
+	&.img-reveal-rtl__wrapper,
+	.img-reveal-rtl__wrapper {
+		overflow: hidden;
+		&::after {
+			content: "";
+			position: absolute;
+			inset-block-start: 0;
+			inset-inline-start: -100%;
+			width: 100%;
+			height: 100%;
+			background-color: var(--reveal-img-bg-color);
+			transform: translateX(100%);
+			will-change: transform;
+		}
+	}
+	.img-reveal-rtl__img {
+		transform: scale(1.06);
+		will-change: transform;
+		opacity: 0;
+	}
+	&.img-reveal-rtl {
+		&.img-reveal-rtl__wrapper::after,
+		.img-reveal-rtl__wrapper::after {
+			transform: none;
+			transition: transform var(--duration-600) var(--quart);
+		}
+		.img-reveal-rtl__img {
+			opacity: 1;
+			transform: none;
+			transition: transform var(--duration-600) var(--quart);
+		}
+	}
+}

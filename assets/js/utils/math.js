@@ -1,0 +1,1 @@
+export function lerp(n,t,r){return(1-(r=r||.08))*n+r*t}export function mapRange(n,t,r,e,a){return(a-n)*(e-r)/(t-n)+r}export function clamp(n,t,r){return Math.min(Math.max(r,n),t)}

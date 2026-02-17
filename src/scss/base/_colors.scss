@@ -1,0 +1,53 @@
+:root {
+	--c-overflow-prev-btn-bg: linear-gradient(95deg, white 50%, rgba(255, 255, 255, 0) 100%);
+	--c-overflow-next-btn-bg: linear-gradient(270deg, white 50%, rgba(255, 255, 255, 0) 100%);
+	--c-dropdown-shadow: -1px 3px 3px 0px rgba(0, 0, 0, 0.1);
+	--c-popover-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.1);
+	--c-modal-overlay: rgba(0, 0, 0, 0.6);
+	/* primary */
+	--c-primary-blue: #305ad4;
+	--c-primary-green: #849b27;
+	--c-primary-orange: #EB6F0A;
+	--c-blue-50: #eaeffb;
+	--c-green-50: #f5f7de;
+	--c-orange-50: #fef3e9;
+	/* background */
+	--c-bg-white: #ffffff;
+	--c-bg-dark-blue: #305ad4;
+	--c-bg-dark-blue-complementary: #264dba;
+	/* text */
+	--c-text-primary: #0b0c18;
+	--c-text-primary-dark: white;
+	--c-text-secondary: #5c5c64;
+	--c-text-tertiary: #8f8f95;
+	--c-text-secondary-dark: rgba(255, 255, 255, 0.8);
+	--c-text-grey-blue-300: #66677a;
+	--c-text-grey-disabled: #bebec1;
+	/* border */
+	--c-border-gray: #e1e1e3;
+	--c-border-white: rgba(255, 255, 255, 0.2);
+	/* sentiment */
+	--c-sentiment-negative: #b3261e;
+	--c-sentiment-positive: #19af55;
+	--c-sentiment-warning: #edc843;
+	/* button */
+	--c-btn-primary: #305ad4;
+	--c-btn-primary-disabled: #acbdee;
+	--c-btn-secondary: #0b0c18;
+	--c-btn-secondary-disabled: #9d9ea3;
+	--c-btn-white: #ffffff;
+	--c-btn-white-disabled: rgba(255, 255, 255, 0.4);
+	/* inputs */
+	--c-input-text-default: rgba(255, 255, 255, 1);
+	--c-input-border-default: rgba(255, 255, 255, 0.6);
+	--c-input-border-active: rgba(255, 255, 255, 1);
+	--c-input-border-dark-active: #5c5c64;
+	--c-input-placeholder: rgba(255, 255, 255, 0.7);
+	--c-input-helper: rgba(255, 255, 255, 0.7);
+	/* icons */
+	--c-icon-white: white;
+	/* images */
+	--c-image-placeholder: #f1f1ed;
+	--c-image-overlay: rgba(0, 0, 0, 0.2);
+	--c-image-overlay-gradient: linear-gradient(180deg, rgba(0, 0, 0, 0.60) 3.38%, rgba(0, 0, 0, 0.00) 38.13%);
+}

@@ -1,0 +1,9 @@
+// @use "@abstracts" as *;
+// @use "@motion-abstracts" as motion;
+[data-motion="sticky-header"] {
+	animation-duration: var(--duration-500);
+	animation-delay: var(--duration-100);
+	animation-timing-function: var(--cubic);
+	animation-fill-mode: backwards;
+	@include motion.css-keyframes__fade-in-move-in(-50%);
+}

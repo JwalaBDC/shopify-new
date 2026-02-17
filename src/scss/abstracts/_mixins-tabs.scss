@@ -1,0 +1,7 @@
+@use "../motion/abstracts/" as motion;
+@use "./mixins-type" as type;
+@mixin tab-hover {
+	color: var(--purple-100);
+	background-color: var(--purple-10);
+	border-color: currentColor;
+}

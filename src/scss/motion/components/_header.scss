@@ -1,0 +1,21 @@
+// @use "@abstracts" as *;
+// @use "@motion-abstracts" as motion;
+[data-motion="header"] {
+	//Header
+	animation-duration: var(--duration-500);
+	animation-timing-function: var(--cubic);
+	animation-fill-mode: backwards;
+	@include motion.css-keyframes__fade-in-move-in(-50px);
+	//Header links
+	[data-header-motion-element="link"] {
+		animation-duration: var(--duration-500);
+		animation-fill-mode: backwards;
+		animation-timing-function: var(--emphasized-decelerate);
+		//@include motion.css-keyframes__fade-in-move-in(-8px);
+	}
+	@for $i from 1 through 30 {
+		[data-header-motion-element-index="#{$i}"] {
+			animation-delay: $i * 25ms;
+		}
+	}
+}

@@ -1,0 +1,85 @@
+@use "sass:string";
+@use "sass:list";
+@use "sass:map";
+@use "breakpoints" as breakpoints;
+
+/* -----------------------------------
+   Breakpoint helper
+------------------------------------ */
+@function bp($key) {
+  @if map.has-key(breakpoints.$breakpoints, $key) {
+    @return map.get(breakpoints.$breakpoints, $key);
+  }
+
+  @error "Breakpoint `#{$key}` not found in $breakpoints.";
+}
+
+/* -----------------------------------
+   Internal helpers
+------------------------------------ */
+@function _media-min($arg) {
+  @if string.index($arg, ">=") == 1 {
+    @return bp(string.slice($arg, 3));
+  }
+
+  @if string.index($arg, ">") == 1 {
+    @return bp(string.slice($arg, 2)) + 1px;
+  }
+
+  @return bp($arg);
+}
+
+@function _media-max($arg) {
+  @if string.index($arg, "<=") == 1 {
+    @return bp(string.slice($arg, 3));
+  }
+
+  @if string.index($arg, "<") == 1 {
+    @return bp(string.slice($arg, 2)) - 1px;
+  }
+
+  @return bp($arg) - 1px;
+}
+
+/* -----------------------------------
+   include-media compatible mixin
+------------------------------------ */
+@mixin media($args...) {
+  $query: null;
+
+  /* ONE argument: "<md", ">lg", "<=md", ">=sm" */
+  @if list.length($args) == 1 {
+    $arg: list.nth($args, 1);
+
+    @if string.index($arg, ">=") == 1 {
+      $query: "(min-width: #{bp(string.slice($arg, 3))})";
+    }
+
+    @else if string.index($arg, "<=") == 1 {
+      $query: "(max-width: #{bp(string.slice($arg, 3))})";
+    }
+
+    @else if string.index($arg, ">") == 1 {
+      $query: "(min-width: #{bp(string.slice($arg, 2)) + 1px})";
+    }
+
+    @else if string.index($arg, "<") == 1 {
+      $query: "(max-width: #{bp(string.slice($arg, 2)) - 1px})";
+    }
+  }
+
+  /* TWO arguments: ("sm", "xl") */
+  @else if list.length($args) == 2 {
+    $min: _media-min(list.nth($args, 1));
+    $max: _media-max(list.nth($args, 2));
+    $query: "(min-width: #{$min}) and (max-width: #{$max})";
+  }
+
+  @if $query == null {
+    @error "Invalid media query arguments: #{$args}";
+  }
+
+  @media #{$query} {
+    @content;
+  }
+}

@@ -1,0 +1,12 @@
+//Stagger Group Motion
+// @use "@abstracts" as *;
+// @use "@motion-abstracts" as motion;
+//Durations
+[data-motion-observer="quickglance"] {
+	[data-quickglance-motion-element="stat-line"] {
+		transform: scaleY(0);
+	}
+	[data-quickglance-motion-element="stat-text"] {
+		opacity: 0;
+	}
+}

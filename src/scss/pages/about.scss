@@ -1,0 +1,83 @@
+@use "../abstracts/index" as *;
+
+[data-template="about"] {
+	scroll-padding-top: calc(var(--h-header) + var(--h-secondary-menu) - 2px);
+
+	main {
+		padding-block-start: var(--h-header);
+	}
+
+	#who-we-are {
+		padding-block: var(--space-sectional);
+
+		@include media("<md") {
+			padding-block: var(--space-l) var(--space-3xl);
+		}
+	}
+
+	.ui-subsidiary-cards-section {
+
+		@include media(">=md") {
+
+			.ui-grid-card__list {
+				row-gap: var(--space-2xl);
+				column-gap: var(--space-xs);
+				padding-inline: 0;
+
+				&-wrapper {
+					padding-inline: var(--container-padding);
+
+					&::before,
+					&::after {
+						display: none;
+					}
+				}
+			}
+		}
+	}
+
+	.ui-award-card__list .ui-article-card {
+		height: 100%;
+	}
+
+	#core-products,
+	#global-presence,
+	#csr,
+	#our-subsidiaries,
+	#awards,
+	#news {
+		margin-block-start: calc(var(--space-sectional) / 2);
+		padding-block-start: calc(var(--space-sectional) / 2);
+
+		@include media("<md") {
+			margin-block-start: calc(var(--space-2xl) / 2);
+			padding-block-start: calc(var(--space-2xl) / 2);
+		}
+	}
+
+	.ui-hero-banner-1 + x-inpage-menu + #what-we-do{
+		margin-block-start: calc(var(--space-sectional) / 2);
+		padding-block-start: calc(var(--space-sectional) / 2);
+
+		@include media("<md") {
+			margin-block-start: calc(var(--space-2xl) / 2);
+			padding-block-start: calc(var(--space-2xl) / 2);
+		}
+	}
+}
+
+[data-sub-template="ourfacility"] {
+	.ui-section-header__title+.ui-section-header__desc {
+		-webkit-line-clamp: unset;
+	}
+
+	.ui-preview-cards-section {
+		.ui-grid-card__list {
+			padding: 0;
+		}
+
+		.ui-section-header {
+			padding-block-end:0;
+		}
+	}
+}

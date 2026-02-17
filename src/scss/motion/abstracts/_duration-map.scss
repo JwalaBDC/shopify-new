@@ -1,0 +1,26 @@
+//Durations map
+$durations: (
+	//Short durations
+	0: 0ms,
+	50: 50ms,
+	100: 100ms,
+	150: 150ms,
+	200: 200ms,
+	//Medium durations
+	250: 250ms,
+	300: 300ms,
+	350: 350ms,
+	400: 400ms,
+	//Long durations
+	450: 450ms,
+	500: 500ms,
+	550: 550ms,
+	600: 600ms,
+	//Extra-long durations
+	700: 700ms,
+	800: 800ms,
+	900: 900ms,
+	1000: 1000ms,
+	1200: 1200ms,
+	2000: 2000ms
+);

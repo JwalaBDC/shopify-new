@@ -1,0 +1,58 @@
+@use "../abstracts/index" as *;
+.u-screenreader-only {
+	position: absolute;
+	clip: rect(1px, 1px, 1px, 1px);
+	-webkit-clip-path: inset(0px 0px 99.9% 99.9%);
+	clip-path: inset(0px 0px 99.9% 99.9%);
+	overflow: hidden;
+	height: 1px;
+	width: 1px;
+	padding: 0;
+	border: 0;
+}
+.u-grabbing-cursor {
+	cursor: grabbing;
+}
+.u-section-top-spacing {
+	margin-block-start: var(--space-sectional);
+	@include media("<md") {
+		margin-block-start: var(--space-2xl);
+	}
+}
+.u-section-top-padding-margin {
+	margin-block-start: calc(var(--space-sectional) / 2);
+	padding-block-start: calc(var(--space-sectional) / 2);
+	@include media("<md") {
+		margin-block-start: calc(var(--space-2xl) / 2);
+		padding-block-start: calc(var(--space-2xl) / 2);
+	}
+}
+.u-section-bottom-spacing {
+	margin-block-end: var(--space-sectional);
+	@include media("<md") {
+		margin-block-end: var(--space-3xl);
+	}
+}
+
+.u-section-top-3xl-spacing {
+	padding-block-start: var(--space-3xl);
+
+	@include media("<md") {
+		padding-block-start: var(--space-2xl);
+	}
+}
+
+.u-section-top-2xl-spacing {
+	padding-block-start: var(--space-2xl);
+
+	@include media("<md") {
+		padding-block-start: var(--space-l);
+	}
+}
+
+.d-n-override {
+	display: none !important;
+}
+.no-background{
+	background: transparent !important;
+}

@@ -1,0 +1,16 @@
+@use "./duration-map";
+@use "./easing-map";
+//Define mixin for transitions
+@mixin transition($duration-key, $easing-key) {
+	$duration: map-get(duration-map.$durations, $duration-key);
+	$easing: map-get(easing-map.$all-easings, $easing-key);
+	transition-duration: $duration;
+	transition-timing-function: $easing;
+}
+//Define mixin for animation
+@mixin css-animation($duration-key, $easing-key) {
+	$duration: map-get(duration-map.$durations, $duration-key);
+	$easing: map-get(easing-map.$all-easings, $easing-key);
+	animation-duration: $duration;
+	animation-timing-function: $easing;
+}

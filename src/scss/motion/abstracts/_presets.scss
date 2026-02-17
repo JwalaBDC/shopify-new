@@ -1,0 +1,76 @@
+@use "./css-duration-easing-properties";
+//Presets
+$hover-duration-key: 100;
+$popover-duration-key: 200;
+$modal-duration-key: 400;
+@mixin popover-transition() {
+	@include css-duration-easing-properties.transition($popover-duration-key, standard);
+}
+@mixin modal-transition() {
+	@include css-duration-easing-properties.transition($modal-duration-key, emphasized-decelerate);
+}
+@mixin hover-transition() {
+	@include css-duration-easing-properties.transition($hover-duration-key, standard);
+}
+@mixin card-hover-transition($selectors: null) {
+	@include css-duration-easing-properties.transition($hover-duration-key, standard);
+	@if $selectors {
+		@each $selector in $selectors {
+			#{$selector} {
+				@include css-duration-easing-properties.transition($hover-duration-key, standard);
+			}
+		}
+	}
+	&:focus-visible,
+	&:active,
+	&.is-pressed {
+		@content;
+	}
+	@media (hover: hover) {
+		&:hover {
+			@content;
+		}
+	}
+}
+@mixin tab-hover-transition() {
+	@include css-duration-easing-properties.transition($hover-duration-key, standard);
+	&[aria-selected="true"] {
+		@content;
+	}
+	@media (hover: hover) {
+		&:hover {
+			@content;
+		}
+	}
+}
+@mixin button-hover-transition($selectors: null) {
+	@include css-duration-easing-properties.transition($hover-duration-key, standard);
+	@if $selectors {
+		@each $selector in $selectors {
+			#{$selector} {
+				@include css-duration-easing-properties.transition($hover-duration-key, standard);
+			}
+		}
+	}
+	&:focus-visible,
+	&.is-pressed,
+	&.is-active {
+		@content;
+	}
+	@media (hover: hover) {
+		&:hover {
+			@content;
+		}
+	}
+}
+@mixin button-hover-custom-transition() {
+	&:focus-visible,
+	&.is-pressed {
+		@content;
+	}
+	@media (hover: hover) {
+		&:hover {
+			@content;
+		}
+	}
+}

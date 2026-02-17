@@ -1,0 +1,31 @@
+{
+  "name": "sunbraker",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": " shopify theme dev --store jwala-new.myshopify.com",
+    "pull_theme": "shopify theme pull --theme 155327365269",
+    "build:scss": "node src/scss/build-scss.js",
+    "build:scss:watch": "node src/scss/build-scss.js --watch",
+    "build:js": "babel src/js --out-dir assets/js --ignore node_modules,src/js/minify.js,src/js/minify-dist.js,**/*.bkp.js,**/.DS_Store && node src/js/minify.js",
+    "build:js:watch": "node src/js/watch-js.js",
+    "build": "npm run build:scss && npm run build:js"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.22.0",
+    "@babel/core": "^7.22.0",
+    "@babel/preset-env": "^7.22.0",
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.24",
+    "postcss-cli": "^10.1.0",
+    "sass": "^1.72.1",
+    "terser": "^5.19.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "include-media": "^2.0.0"
+  }
+}

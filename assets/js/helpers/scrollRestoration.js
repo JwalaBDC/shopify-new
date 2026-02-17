@@ -1,0 +1,1 @@
+history&&history.scrollRestoration&&(history.scrollRestoration="auto"),console.log("Scroll Restoration Helper Loaded");

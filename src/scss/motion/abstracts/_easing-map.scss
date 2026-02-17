@@ -1,0 +1,51 @@
+//Easings map
+$easings: (
+	emphasized: cubic-bezier(0.2, 0, 0, 1),
+	standard: cubic-bezier(0.2, 0, 0, 1),
+	//Accelerate easings
+	emphasized-accelerate: cubic-bezier(0.3, 0, 0.8, 0.15),
+	standard-accelerate: cubic-bezier(0.3, 0, 1, 1),
+	//Decelerate easings
+	emphasized-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1),
+	standard-decelerate: cubic-bezier(0, 0, 0, 1),
+);
+$all-easings: (
+	emphasized: cubic-bezier(0.2, 0, 0, 1),
+	standard: cubic-bezier(0.2, 0, 0, 1),
+	legacy: cubic-bezier(0.4, 0, 0.2, 1),
+	browser: ease-in-out,
+	sine: cubic-bezier(0.445, 0.05, 0.55, 0.95),
+	quad: cubic-bezier(0.455, 0.03, 0.515, 0.955),
+	cubic: cubic-bezier(0.645, 0.045, 0.355, 1),
+	quart: cubic-bezier(0.77, 0, 0.175, 1),
+	quint: cubic-bezier(0.86, 0, 0.07, 1),
+	expo: cubic-bezier(1, 0, 0, 1),
+	circ: cubic-bezier(0.785, 0.135, 0.15, 0.86),
+	back: cubic-bezier(0.68, -0.55, 0.265, 1.55),
+	//Accelerate easings
+	emphasized-accelerate: cubic-bezier(0.3, 0, 0.8, 0.15),
+	standard-accelerate: cubic-bezier(0.3, 0, 1, 1),
+	legacy-accelerate: cubic-bezier(0.4, 0, 1, 1),
+	browser-accelerate: ease-in,
+	sine-accelerate: cubic-bezier(0.47, 0, 0.745, 0.715),
+	quad-accelerate: cubic-bezier(0.55, 0.085, 0.68, 0.53),
+	cubic-accelerate: cubic-bezier(0.55, 0.055, 0.675, 0.19),
+	quart-accelerate: cubic-bezier(0.895, 0.03, 0.685, 0.22),
+	quint-accelerate: cubic-bezier(0.755, 0.05, 0.855, 0.06),
+	expo-accelerate: cubic-bezier(0.95, 0.05, 0.795, 0.035),
+	circ-accelerate: cubic-bezier(0, 0.55, 0.45, 1),
+	back-accelerate: cubic-bezier(0.6, -0.28, 0.735, 0.045),
+	//Decelerate easings
+	emphasized-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1),
+	standard-decelerate: cubic-bezier(0, 0, 0, 1),
+	legacy-decelerate: cubic-bezier(0, 0, 0.2, 1),
+	browser-decelerate: ease-out,
+	sine-decelerate: cubic-bezier(0.39, 0.575, 0.565, 1),
+	quad-decelerate: cubic-bezier(0.25, 0.46, 0.45, 0.94),
+	cubic-decelerate: cubic-bezier(0.215, 0.61, 0.355, 1),
+	quart-decelerate: cubic-bezier(0.165, 0.84, 0.44, 1),
+	quint-decelerate: cubic-bezier(0.23, 1, 0.32, 1),
+	expo-decelerate: cubic-bezier(0.19, 1, 0.22, 1),
+	circ-decelerate: cubic-bezier(0.075, 0.82, 0.165, 1),
+	back-decelerate: cubic-bezier(0.175, 0.885, 0.32, 1.275),
+);

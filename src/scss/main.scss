@@ -1,0 +1,41 @@
+/* =========================================
+   ABSTRACTS
+   (functions, mixins, helpers)
+========================================= */
+@use 'abstracts/index' as abstracts;
+
+/* =========================================
+   BASE
+   (variables, reset, typography, globals)
+========================================= */
+@use 'base/index' as base;
+@use 'typography/index' as typography;
+
+/* =========================================
+   LAYOUT
+========================================= */
+// @use 'layout/header';
+// @use 'layout/footer';
+
+/* =========================================
+   COMPONENTS
+========================================= */
+@use 'components/button';
+@use 'components/card';
+@use 'components/modal';
+
+/* =========================================
+   SECTIONS
+========================================= */
+// @use 'sections/hero';
+// @use 'sections/product';
+
+
+main{
+   position: absolute;
+    background-color: pinky;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+}

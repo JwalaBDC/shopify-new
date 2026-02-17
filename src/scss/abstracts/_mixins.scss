@@ -1,0 +1,76 @@
+/* mixins */
+@mixin hide-scrollbar {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}
+@mixin custom-scrollbar {
+	/* width */
+	&::-webkit-scrollbar {
+		width: 4px;
+	}
+	/* Track */
+	&::-webkit-scrollbar-track {
+		background-color: var(--c-border-gray);
+		border-radius: 50px;
+	}
+	/* Thumb */
+	&::-webkit-scrollbar-thumb {
+		background-color: var(--c-text-tertiary);
+		border-radius: 50px;
+	}
+}
+@mixin sr-only {
+	position: absolute;
+	clip: rect(1px, 1px, 1px, 1px);
+	-webkit-clip-path: inset(0px 0px 99.9% 99.9%);
+	clip-path: inset(0px 0px 99.9% 99.9%);
+	overflow: hidden;
+	height: 1px;
+	width: 1px;
+	padding: 0;
+	border: 0;
+}
+@mixin flex-centered {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+@mixin absolute-cover {
+	position: absolute;
+	inset-inline-start: 0;
+	inset-block-start: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: top center;
+}
+@mixin mobile-full-width {
+	margin-left: calc(0px - var(--SPACING-M));
+	width: calc(100% + var(--SPACING-M) * 2);
+}
+@mixin lineclamp($lines: 2) {
+	display: -webkit-box;
+	-webkit-line-clamp: $lines;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+@mixin unsetLineclamp() {
+	display: inherit;
+	-webkit-line-clamp: unset;
+	-webkit-box-orient: unset;
+	overflow: unset;
+	text-overflow: unset;
+}
+@mixin content-max-width {
+	margin: 0 auto;
+	max-width: var(--w-max);
+	padding-inline: var(--container-padding);
+}
+@mixin focus-outline($color: black) {
+	outline: 1px solid $color;
+	outline-offset: 4px;
+}

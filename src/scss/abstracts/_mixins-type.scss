@@ -1,0 +1,121 @@
+@mixin type-regular-140 {
+	font-size: 140px;
+	font-style: normal;
+	font-weight: 405;
+	line-height: 100%; /* 140px */
+	letter-spacing: -2.8px;
+}
+@mixin type-regular-120 {
+	font-size: 120px;
+	font-style: normal;
+	font-weight: 405;
+	line-height: 100%; /* 120px */
+	letter-spacing: normal;
+}
+@mixin type-regular-80 {
+	font-size: 80px;
+	font-style: normal;
+	font-weight: 405;
+	// line-height: 120%; /* 80px */
+	line-height: 100%;
+	letter-spacing: -1.6px;
+}
+@mixin type-regular-64 {
+	font-size: 64px;
+	font-style: normal;
+	font-weight: 405;
+	line-height: 100%; /* 64px */
+	letter-spacing: normal;
+}
+@mixin type-regular-60 {
+	font-size: 60px;
+	font-style: normal;
+	font-weight: 405;
+	line-height: 100%; /* 60px */
+	letter-spacing: normal;
+}
+@mixin type-regular-48 {
+	font-size: 48px;
+	font-style: normal;
+	font-weight: 405;
+	line-height: 100%; /* 48px */
+	line-height: 120%; //or text gets clipped off with lineclamping
+	letter-spacing: normal;
+}
+@mixin type-regular-40 {
+	font-size: 40px;
+	font-style: normal;
+	font-weight: 405;
+	line-height: 120%; /* 48px */
+	letter-spacing: normal;
+}
+@mixin type-regular-32 {
+	font-size: 32px;
+	font-style: normal;
+	font-weight: 405;
+	line-height: 120%; /* 38.4px */
+	letter-spacing: normal;
+}
+@mixin type-regular-24 {
+	font-size: 24px;
+	font-style: normal;
+	font-weight: 405;
+	line-height: 120%; /* 28.8px */
+	letter-spacing: 0.24px;
+}
+@mixin type-regular-20 {
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 405;
+	line-height: 130%; /* 26px */
+	letter-spacing: 0.4px;
+}
+@mixin type-regular-18 {
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 405;
+	line-height: 140%; /* 25.2px */
+	letter-spacing: 0.18px;
+}
+@mixin type-regular-16 {
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 405;
+	line-height: 140%; /* 22.4px */
+	letter-spacing: 0.16px;
+}
+@mixin type-label-16 {
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 405;
+	line-height: 100%; /* 16px */
+	letter-spacing: 0.16px;
+}
+@mixin type-regular-14 {
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 405;
+	line-height: 140%; /* 19.6px */
+	letter-spacing: 0.14px;
+}
+@mixin type-regular-12 {
+	font-size: 12px;
+	font-style: normal;
+	font-weight: 405;
+	line-height: 120%; /* 14.4px */
+	letter-spacing: 0.12px;
+}
+@mixin type-label-12 {
+	font-size: 12px;
+	font-style: normal;
+	font-weight: 405;
+	line-height: 1;
+	letter-spacing: 0.12px;
+}
+@mixin type-regular-10 {
+	font-size: 10px;
+	font-style: normal;
+	font-weight: 405;
+	line-height: 100%; /* 10px */
+	letter-spacing: 0.1px;
+}

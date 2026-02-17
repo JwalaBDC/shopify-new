@@ -1,0 +1,15 @@
+[data-motion-observer="sectional-banner"] {
+	overflow: hidden;
+	[data-sectional-banner-motion-element="image-wrapper"] {
+		will-change: transform;
+	}
+	[data-sectional-banner-motion-element="image"] {
+		opacity: 0;
+		transform: scale(1.1);
+	}
+	&.is-visible-in-viewport [data-sectional-banner-motion-element="image"] {
+		transform: none;
+		opacity: 1;
+		transition: opacity 0.4s var(--standard-decelerate), transform 1s var(--emphasized-decelerate);
+	}
+}

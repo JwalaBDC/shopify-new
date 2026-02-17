@@ -1,0 +1,36 @@
+@use "sass:list";
+
+/* z-index management function */
+$zIndices: (
+  "highest",
+  "skip-to-content",
+  "alert-bar",
+  "modal-sticky-menu",
+  "modal-sticky-title",
+  "modal",
+  "header",
+  "secondary-menu",
+  "tertiary-menu",
+  "secondary-menu-dropdown",
+  "dropdown",
+  "product-header",
+  "blur-overlay",
+  "modal-overlay",
+  "request-quote-popover",
+  "tab-slider-nav",
+  "sticky-menu",
+  "maxwidth-slider-strip",
+  "share-popover",
+  "lowest"
+);
+
+@function z($name) {
+  $i: list.index($zIndices, $name);
+
+  @if $i {
+    @return (list.length($zIndices) - $i) + 50;
+  } @else {
+    @warn 'There is no item "#{$name}" in this list; Choose one of: #{$zIndices}';
+    @return null;
+  }
+}

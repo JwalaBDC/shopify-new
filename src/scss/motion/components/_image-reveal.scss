@@ -1,0 +1,9 @@
+//Stagger Group Motion
+// @use "@abstracts" as *;
+// @use "@motion-abstracts" as motion;
+//Durations
+[data-motion-observer="image-reveal"] {
+	[data-image-reveal-motion-element="image-wrapper"] {
+		opacity: 0;
+	}
+}

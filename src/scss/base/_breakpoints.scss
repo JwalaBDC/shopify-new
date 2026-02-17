@@ -1,0 +1,42 @@
+@use "../abstracts/index" as *;
+/* breakpoint-specific classes */
+@include media("<xs") {
+	.is-above-414 {
+		display: none !important;
+	}
+}
+@include media(">=xs") {
+	.is-below-414 {
+		display: none !important;
+	}
+}
+@include media("<sm") {
+	.is-above-767 {
+		display: none !important;
+	}
+}
+@include media(">=sm") {
+	.is-below-768 {
+		display: none !important;
+	}
+}
+@include media(">=md") {
+	.is-below-1024 {
+		display: none !important;
+	}
+}
+@include media("<md") {
+	.is-above-1023 {
+		display: none !important;
+	}
+}
+@include media(">=lg") {
+	.is-below-1200 {
+		display: none !important;
+	}
+}
+@include media("<lg") {
+	.is-above-1199 {
+		display: none !important;
+	}
+}

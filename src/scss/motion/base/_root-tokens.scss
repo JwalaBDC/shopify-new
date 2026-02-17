@@ -1,0 +1,19 @@
+// @use "@motion-abstracts" as motion;
+//Define root variables for durations
+@mixin create-duration-root-variables($map) {
+	@each $duration-name, $duration-value in $map {
+		--duration-#{$duration-name}: #{$duration-value};
+	}
+}
+:root {
+	@include create-duration-root-variables(motion.$durations);
+}
+//Define root variables for easings
+@mixin create-easing-root-variables($map) {
+	@each $name, $value in $map {
+		--#{$name}: #{$value};
+	}
+}
+:root {
+	@include create-easing-root-variables(motion.$all-easings);
+}

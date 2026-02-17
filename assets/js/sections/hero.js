@@ -1,0 +1,1 @@
+console.log("sections_product.js loaded");

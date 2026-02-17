@@ -1,0 +1,21 @@
+[data-motion-element="split-title"] {
+	opacity: 0;
+	will-change: opacity;
+	.word-wrapper {
+		display: inline-flex;
+		overflow: hidden;
+		padding-bottom: 10px;
+		margin-bottom: -10px;
+	}
+	.word {
+		opacity: 0;
+		transform-origin: left center;
+		vertical-align: top;
+		will-change: opacity, transform;
+	}
+}
+body.isWindows [data-motion-element="split-title"] {
+	.word {
+		will-change: unset !important;
+	}
+}

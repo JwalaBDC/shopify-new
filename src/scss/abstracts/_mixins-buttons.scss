@@ -1,0 +1,64 @@
+@use "../motion/abstracts/" as motion;
+@use "./mixins-type" as type;
+@mixin m-btn-text-icon {
+	cursor: pointer;
+	padding: var(--space-s) var(--space-s) var(--space-s) var(--space-2xl);
+	border-radius: 1000px;
+	display: inline-flex;
+	align-items: center;
+	gap: var(--space-2);
+	&__text {
+		@include type.type-cta-button-12;
+		&:only-child {
+			padding-right: var(--space-4xs);
+		}
+	}
+	&__icon {
+		width: 16px;
+		height: 16px;
+		path {
+			fill: currentColor;
+		}
+	}
+
+	&:has(.m-btn-outlined__icon:first-child) {
+		padding-left: var(--space-s);
+		padding-right: var(--space-2xl);
+	}
+}
+@mixin m-btn-icon-only {
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: var(--size-10);
+	height: var(--size-10);
+	border-radius: 50%;
+	background-color: var(--c-text-secondary-dark);
+
+	&__icon {
+		width: var(--space-2xs);
+		height: var(--space-2xs);
+		path {
+			fill: var(--c-text-secondary);
+		}
+	}
+}
+@mixin m-btn-disabled-state {
+	opacity: 0.6;
+	pointer-events: none;
+}
+@mixin m-btn-loader-dots {
+	&.is-loading {
+		pointer-events: none;
+		background-color: var(--c-primary-blue);
+		p,
+		svg,
+		img {
+			opacity: 0;
+		}
+		.m-btn-loader-dots {
+			opacity: 1;
+		}
+	}
+}

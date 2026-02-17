@@ -1,0 +1,11 @@
+//Stagger Group Motion
+// @use "@abstracts" as *;
+// @use "@motion-abstracts" as motion;
+[data-stagger-motion-observer] {
+	[data-stagger-motion-index] {
+		opacity: 0;
+	}
+	[data-stagger-motion-type="xs"] {
+		//outline: 1px solid red;
+	}
+}

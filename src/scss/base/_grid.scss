@@ -1,0 +1,96 @@
+@use "../abstracts/index" as *;
+@mixin define-colspans {
+	/* inner-colspan doesn't accomodate gutter spacing */
+	--inner-colspan1: calc(((var(--container-width) - var(--container-padding) * 2) - var(--gutter-width) * (var(--total-columns) - 1)) / var(--total-columns));
+	@for $i from 2 through 25 {
+		--inner-colspan#{$i}: calc(var(--inner-colspan1) * #{$i} + var(--gutter-width) * (#{$i} - 1));
+	}
+	/* outer-colspan accomodates gutter spacing */
+	--outer-colspan1: calc(var(--adjusted-container-width) / var(--total-columns));
+	@for $i from 2 through 25 {
+		--outer-colspan#{$i}: calc(var(--outer-colspan1) * #{$i});
+	}
+}
+:root {
+	--total-columns: 12;
+	--gutter-width: var(--space-3xs);
+	--container-width: var(--w-viewport);
+	--container-padding: var(--space-l);
+	/* container padding adjusted by half the gutter width */
+	--adjusted-container-padding: calc(var(--container-padding) - var(--gutter-width) / 2);
+	--adjusted-container-width: calc(var(--container-width) - 2 * var(--adjusted-container-padding));
+	@include define-colspans();
+}
+@include media("<sm") {
+	:root {
+		--total-columns: 4;
+		--container-padding: var(--space-2xs);
+		--gutter-width: var(--space-2xs);
+	}
+}
+@include media(">=sm", "<md") {
+	:root {
+		--total-columns: 10;
+		--container-padding: var(--space-s);
+	}
+}
+@include media(">=md") {
+	:root {
+		--total-columns: 12;
+	}
+}
+@include media(">=maxwidth") {
+	:root {
+		--total-columns: 20;
+		--container-width: min(var(--w-viewport), var(--w-max));
+	}
+}
+@include media(">maxwidth") {
+	:root {
+		--container-padding: 0px;
+	}
+}
+main {
+	position: relative;
+	background-color: var(--c-bg-white);
+	z-index: 1;
+}
+.gridlines {
+	pointer-events: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	max-width: var(--w-max);
+	margin: 0 auto;
+	width: 100%; // changed from var(--container-width) to 100% as the earlier one was breaking at 1600px screen
+	padding: 0 var(--container-padding);
+	height: 9999px;
+	outline: 1px solid rgba(255, 0, 0, 0.08);
+	z-index: z("highest");
+	display: grid;
+	grid-template-columns: repeat(var(--total-columns), 1fr);
+	gap: 0 var(--gutter-width);
+	display: none;
+	&.is-visible {
+		display: grid;
+	}
+	&__col {
+		background-color: rgba(255, 0, 0, 0.08);
+	}
+	@include media("<sm") {
+		& > :nth-child(n + 5) {
+			display: none;
+		}
+	}
+	@include media(">=sm", "<md") {
+		& > :nth-child(n + 11) {
+			display: none;
+		}
+	}
+	@include media(">=md", "<maxwidth") {
+		& > :nth-child(n + 13) {
+			display: none;
+		}
+	}
+}
