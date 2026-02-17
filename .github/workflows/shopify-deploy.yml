@@ -28,5 +28,4 @@ jobs:
           shopify theme push \
             --store jwala-new.myshopify.com \
             --theme 155327365269 \
-            --allow-live=false \
             --path .
