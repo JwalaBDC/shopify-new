@@ -4,7 +4,7 @@ console.log("MAIN JS LOADED");
 import scrollManager from "./managers/ScrollManager.js";
 import BrowserManager from "./managers/BrowserManager.js";
 import DeviceManager from "./managers/DeviceManager.js";
-import ImageManager from "./managers/ImageManager.js";
+// import ImageManager from "./managers/ImageManager.js";
 
 /* helpers */
 import "./helpers/scrollRestoration.js";
@@ -25,5 +25,5 @@ import "./helpers/PlaceholderSuggestions.js";
 /* init */
 BrowserManager.init();
 DeviceManager.init();
-ImageManager.init();
+// ImageManager.init();
 scrollManager.init();
