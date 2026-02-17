@@ -10,21 +10,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
 
       - name: Install Shopify CLI
         run: npm install -g @shopify/cli @shopify/theme
 
-      - name: Deploy theme to Shopify
+      - name: Push theme
         env:
           SHOPIFY_FLAG_STORE: ${{ secrets.SHOPIFY_STORE }}
-          SHOPIFY_CLI_THEME_ACCESS_PASSWORD: ${{ secrets.SHOPIFY_THEME_ACCESS_PASSWORD }}
+          SHOPIFY_CLI_THEME_ACCESS_PASSWORD: ${{ secrets.SHOPIFY_CLI_THEME_ACCESS_PASSWORD }}
         run: |
           shopify theme push \
             --theme ${{ secrets.SHOPIFY_THEME_ID }} \
