@@ -17,13 +17,13 @@ jobs:
           node-version: 18
 
       - name: Install Shopify CLI
-        run: npm install -g @shopify/cli @shopify/theme
+        run: npm install -g @shopify/cli
 
-      - name: Deploy theme
+      - name: Deploy theme to Shopify
         env:
           SHOPIFY_CLI_AUTH_TOKEN: ${{ secrets.SHOPIFY_CLI_AUTH_TOKEN }}
+          SHOPIFY_CLI_STORE: ${{ secrets.SHOPIFY_CLI_STORE }}
         run: |
           shopify theme push \
-            --store jwala-new.myshopify.com \
             --theme 155327365269 \
             --path .
