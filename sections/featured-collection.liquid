@@ -3,6 +3,7 @@
 
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 {{ 'template-collection.css' | asset_url | stylesheet_tag }}
+{{ 'css/components/ui/ui-featured-collection.css' | asset_url | stylesheet_tag }}
 
 {% if section.settings.image_shape == 'blob' %}
   {{ 'mask-blobs.css' | asset_url | stylesheet_tag }}
@@ -28,6 +29,31 @@
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  .featured-collection-subtitle {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 0.8rem;
+    margin-bottom: 0.8rem;
+    line-height: 1.4;
+  }
+
+  .featured-collection-subtitle__lead {
+    color: {{ section.settings.subtitle_lead_color }};
+  }
+
+  .featured-collection-subtitle__tail {
+    color: {{ section.settings.subtitle_tail_color }};
+  }
+
+  .featured-collection-subtitle__icon {
+    width: {{ section.settings.subtitle_icon_size }}px;
+    height: {{ section.settings.subtitle_icon_size }}px;
+    object-fit: contain;
+    border-radius: 4px;
   }
 
   @media screen and (min-width: 750px) {
@@ -76,7 +102,32 @@
       {%- if section.settings.title != blank -%}
         <h2 class="title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
           {{ section.settings.title }}
+          {%- if section.settings.show_product_count and section.settings.collection != blank -%}
+            ({{ section.settings.collection.all_products_count }})
+          {%- endif -%}
         </h2>
+      {%- endif -%}
+      {%- if section.settings.show_subtitle_row -%}
+        {%- if section.settings.subtitle_lead != blank or section.settings.subtitle_tail != blank or section.settings.subtitle_icon != blank -%}
+          <div class="featured-collection-subtitle{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+            {%- if section.settings.subtitle_lead != blank -%}
+              <span class="featured-collection-subtitle__lead">{{ section.settings.subtitle_lead | escape }}</span>
+            {%- endif -%}
+            {%- if section.settings.subtitle_icon != blank -%}
+              <img
+                class="featured-collection-subtitle__icon"
+                src="{{ section.settings.subtitle_icon | image_url: width: 80 }}"
+                alt="{{ section.settings.subtitle_icon_alt | escape }}"
+                loading="lazy"
+                width="{{ section.settings.subtitle_icon_size }}"
+                height="{{ section.settings.subtitle_icon_size }}"
+              >
+            {%- endif -%}
+            {%- if section.settings.subtitle_tail != blank -%}
+              <span class="featured-collection-subtitle__tail">{{ section.settings.subtitle_tail | escape }}</span>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
       {%- endif -%}
       {%- if section.settings.description != blank
         or section.settings.show_description
@@ -214,6 +265,7 @@
   </div>
 </div>
 
+
 {% schema %}
 {
   "name": "t:sections.featured-collection.name",
@@ -246,6 +298,63 @@
       "id": "title",
       "default": "t:sections.featured-collection.settings.title.default",
       "label": "t:sections.featured-collection.settings.title.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_count",
+      "label": "Show product count in title",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_subtitle_row",
+      "label": "Show subtitle row",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "subtitle_lead",
+      "label": "Subtitle lead text",
+      "default": "Bakers of biscuits"
+    },
+    {
+      "type": "image_picker",
+      "id": "subtitle_icon",
+      "label": "Subtitle icon"
+    },
+    {
+      "type": "text",
+      "id": "subtitle_icon_alt",
+      "label": "Subtitle icon alt text",
+      "default": "Biscuit icon"
+    },
+    {
+      "type": "range",
+      "id": "subtitle_icon_size",
+      "min": 16,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Subtitle icon size",
+      "default": 28
+    },
+    {
+      "type": "text",
+      "id": "subtitle_tail",
+      "label": "Subtitle tail text",
+      "default": "since 1956. Dishing out delights since forever."
+    },
+    {
+      "type": "color",
+      "id": "subtitle_lead_color",
+      "label": "Subtitle lead color",
+      "default": "#ea6a00"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_tail_color",
+      "label": "Subtitle tail color",
+      "default": "#dc7092"
     },
     {
       "type": "select",
@@ -526,3 +635,7 @@
   ]
 }
 {% endschema %}
+
+{% comment %} <script>
+  console.log('SECTION SETTINGSssssssss:', {{ section.settings.collection | json }});
+</script> {% endcomment %}

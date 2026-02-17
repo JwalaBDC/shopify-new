@@ -3,7 +3,7 @@
 	--w-viewport: 100vw;
 	--h-viewport: 100vh;
 	--w-max: 1600px;
-	--h-header: 72px;
+	--h-header: 88px;
 	--h-secondary-menu: 58px;
 	--h-filtersMenu: 48px;
 	--h-tablist: 48px;
@@ -14,7 +14,7 @@
 @include media("<sm") {
 	:root {
 		--w-max: 100%;
-		--h-header: 52px;
+		--h-header: 74px;
 		--h-secondary-menu: 46px;
 		--h-filtersMenu: 45px;
 		--h-tablist: 45px;

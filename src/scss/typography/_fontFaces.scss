@@ -1,8 +1,5 @@
-/* Fonts */
-$recoletaBold: "RecoletaBold";
-$recoletaSemiBold: "RecoletaSemiBold";
-$recoletaMedium: "RecoletaMedium";
-$recoletaRegular: "RecoletaRegular";
+@use "fontVariables" as *;
+
 /* Recoleta */
 @font-face {
 	font-family: $recoletaBold;

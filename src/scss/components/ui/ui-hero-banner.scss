@@ -1,0 +1,118 @@
+@use "../../typography/fontVariables" as *;
+
+.banner {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    z-index: auto;
+    isolation: isolate;
+    min-height: calc(770px - var(--h-header));
+
+    @include media("<md") {
+        min-height: calc(360px - var(--h-header));
+        padding-top: 380px;
+    }
+
+    &__image--mobile {
+        display: none !important;
+    }
+
+    @include media("<md") {
+        &__image--desktop {
+            display: none !important;
+        }
+
+        &__image--mobile {
+            display: block !important;
+        }
+    }
+
+    &__media {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background-color: transparent;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &__content {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+
+        @include media("<md") {
+            top: 60%;
+            left: calc(50% - 14px);
+        }
+
+        .banner__icon {
+            position: absolute;
+            top: 100px;
+            left: -20px;
+
+            @include media("<md") {
+                top: 50px;
+                left: -10px;
+            }
+
+            img {
+                width: 190.35px;
+                height: 166.05px;
+                flex-shrink: 0;
+
+                @include media("<md") {
+                    height: auto;
+                    width: 98px;
+                }
+            }
+        }
+    }
+
+    &__heading {
+        color: var(--c-text-primary-dark);
+        font-family: $recoletaSemiBold;
+        font-size: 97.2px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 1.1;
+        text-align: right;
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+
+        @include media("<md") {
+            font-size: 48px;
+            line-height: 1.2;
+        }
+
+        &-copy1 {
+            position: relative;
+        }
+
+        &-copy2 {
+            left: 70px;
+            position: relative;
+
+            @include media("<md") {
+                left: 40px;
+            }
+        }
+
+        &-copy3 {
+            position: relative;
+        }
+
+        span {
+            display: flex;
+            width: max-content;
+        }
+    }
+
+}

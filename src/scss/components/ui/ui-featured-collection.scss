@@ -1,0 +1,31 @@
+@use "../../typography/fontVariables" as *;
+
+.collection {
+    &__title {
+        .title {
+            font-family: $recoletaBold;
+            color: var(--c-text-brown);
+            margin-bottom: 7px !important;
+        }
+    }
+
+    .featured-collection-subtitle {
+        display: inline-block;
+        font-family: $recoletaRegular;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        max-width: 630px;
+
+        &__icon {
+            display: inline-flex;
+            width: 49px;
+            height: 42px;
+            margin-inline: 5px;
+            position: relative;
+            vertical-align: middle;
+            top: -3px;
+        }
+    }
+}
