@@ -23,12 +23,14 @@
 @use 'components/button';
 @use 'components/card';
 @use 'components/modal';
+@use 'components/ui/ui-featured-collection';
+@use 'components/ui/ui-hero-banner';
 
 /* =========================================
    SECTIONS
 ========================================= */
 // @use 'sections/hero';
-// @use 'sections/product';
+// @use 'sections/product';  
 
 
 main{
