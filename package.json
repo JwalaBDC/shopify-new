@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": " shopify theme dev --store jwala-new.myshopify.com",
+    "dev": "shopify theme dev --store jwala-new.myshopify.com",
     "pull_theme": "shopify theme pull --theme 155327365269",
     "build:scss": "node src/scss/build-scss.js",
     "build:scss:watch": "node src/scss/build-scss.js --watch",

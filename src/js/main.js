@@ -17,6 +17,7 @@ import "./helpers/VerticalScrollbar.js";
 import "./helpers/ScrollToSection.js";
 import "./helpers/Breadcrumb.js";
 import "./helpers/PlaceholderSuggestions.js";
+import "./helpers/CardQuickAddToggle.js";
 
 
 /* ui-component */
