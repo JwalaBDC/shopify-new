@@ -2127,10 +2127,14 @@ input[type="checkbox"] {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 0.9rem;
   bottom: 10px;
   left: 12px;
-  line-height: calc(1 + 0.1 / var(--font-body-scale));
+  text-align: center;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }
 
 /* utility-bar */
