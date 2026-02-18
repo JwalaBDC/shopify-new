@@ -42,10 +42,15 @@
         line-height: normal;
         padding-block: 0;
         padding-inline: var(--space-xs);
+
+        &:hover{
+            color: var(--c-text-primary-dark);
+        }
     }
 
     &__active-menu-item {
         text-decoration: none;
+        color: var(--c-text-primary-dark);
     }
 
     &__icon--cart {
