@@ -1,4 +1,3 @@
-@use "../motion/abstracts/" as motion;
 @use "./mixins-type" as type;
 @mixin m-btn-text-icon {
 	cursor: pointer;

@@ -2,7 +2,7 @@
 {{ 'css/components/ui/ui-hero-banner.css' | asset_url | stylesheet_tag }}
 
 {%- if section.settings.image_height == 'adapt' and section.settings.image != blank -%}
-  {%- style -%}
+  {%- style -%} 
     @media screen and (max-width: 749px) {
     #Banner-{{ section.id }}::before,
     #Banner-{{ section.id }}.banner__media::before,

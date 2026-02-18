@@ -1,4 +1,5 @@
 @use "../../typography/fontVariables" as *;
+@use "../../abstracts/mixins-media" as *;
 
 .banner {
     display: flex;
