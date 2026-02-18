@@ -35,19 +35,12 @@ if (!window.cardQuickAddToggleBound) {
         var html = sections && sections["cart-icon-bubble"];
         if (!html) return;
 
-        var sectionNode = document.getElementById("shopify-section-cart-icon-bubble");
-        if (sectionNode) {
-          sectionNode.outerHTML = html;
-          return;
-        }
+        var cartAnchors = document.querySelectorAll("#cart-icon-bubble");
+        if (!cartAnchors.length) return;
 
-        var existingBubble = document.getElementById("cart-icon-bubble");
-        if (!existingBubble) return;
-
-        var wrapper = document.createElement("div");
-        wrapper.innerHTML = html;
-        var nextBubble = wrapper.querySelector("#cart-icon-bubble");
-        if (nextBubble) existingBubble.replaceWith(nextBubble);
+        cartAnchors.forEach(function (anchor) {
+          anchor.innerHTML = html;
+        });
       });
   };
 
@@ -173,12 +166,6 @@ if (!window.cardQuickAddToggleBound) {
     if (addButton) {
       var addSwitch = addButton.closest(".js-card-quick-add-switch");
       if (!addSwitch || addButton.disabled) return;
-      var mode = addSwitch.dataset.cardQuickAddMode;
-
-      if (mode !== "modal") {
-        addSwitch.classList.add("is-active");
-        return;
-      }
 
       event.preventDefault();
       event.stopPropagation();
@@ -190,7 +177,11 @@ if (!window.cardQuickAddToggleBound) {
       setPending(addSwitch, true);
       addToCart(addVariantId, 1)
         .then(function () {
+          addSwitch.classList.add("is-active");
           return refreshFromCart();
+        })
+        .catch(function (error) {
+          console.error("Card quick add failed:", error);
         })
         .finally(function () {
           setPending(addSwitch, false);
@@ -209,7 +200,11 @@ if (!window.cardQuickAddToggleBound) {
       setPending(plusSwitch, true);
       addToCart(plusVariantId, 1)
         .then(function () {
+          plusSwitch.classList.add("is-active");
           return refreshFromCart();
+        })
+        .catch(function (error) {
+          console.error("Card quick add increment failed:", error);
         })
         .finally(function () {
           setPending(plusSwitch, false);
@@ -233,6 +228,9 @@ if (!window.cardQuickAddToggleBound) {
     changeCart(minusVariantId, Math.max(targetQuantity, 0))
       .then(function () {
         return refreshFromCart();
+      })
+      .catch(function (error) {
+        console.error("Card quick add decrement failed:", error);
       })
       .finally(function () {
         setPending(minusSwitch, false);
