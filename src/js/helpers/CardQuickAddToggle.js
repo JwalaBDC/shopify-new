@@ -19,6 +19,38 @@ if (!window.cardQuickAddToggleBound) {
     });
   };
 
+  var refreshCartIconSection = function () {
+    return fetch(window.location.pathname + "?sections=cart-icon-bubble", {
+      method: "GET",
+      credentials: "same-origin",
+      headers: {
+        Accept: "application/json",
+      },
+    })
+      .then(function (response) {
+        if (!response.ok) throw new Error("Failed cart icon section fetch");
+        return response.json();
+      })
+      .then(function (sections) {
+        var html = sections && sections["cart-icon-bubble"];
+        if (!html) return;
+
+        var sectionNode = document.getElementById("shopify-section-cart-icon-bubble");
+        if (sectionNode) {
+          sectionNode.outerHTML = html;
+          return;
+        }
+
+        var existingBubble = document.getElementById("cart-icon-bubble");
+        if (!existingBubble) return;
+
+        var wrapper = document.createElement("div");
+        wrapper.innerHTML = html;
+        var nextBubble = wrapper.querySelector("#cart-icon-bubble");
+        if (nextBubble) existingBubble.replaceWith(nextBubble);
+      });
+  };
+
   var addToCart = function (variantId, quantity) {
     return fetch(withJsEndpoint(window.routes && window.routes.cart_add_url, "/cart/add"), {
       method: "POST",
@@ -126,7 +158,14 @@ if (!window.cardQuickAddToggleBound) {
   };
 
   var refreshFromCart = function () {
-    return getCart().then(syncSwitchesFromCart);
+    return getCart().then(function (cart) {
+      syncSwitchesFromCart(cart);
+      return refreshCartIconSection()
+        .catch(function () {})
+        .then(function () {
+          return cart;
+        });
+    });
   };
 
   document.addEventListener("click", function (event) {
