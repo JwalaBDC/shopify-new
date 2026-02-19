@@ -1,1 +1,64 @@
-export function splitByWords(e){let s=e.childNodes,n="";return[...s].forEach(function(e){if(3===e.nodeType){e.textContent.replace(/[\n\r]+|[\s]{2,}/g," ").trim().split(" ").map(function(e){e&&(n+=`<span class="word-wrapper"><span class="word">${e}&nbsp;</span></span>`)})}else if(1===e.nodeType)if("SPAN"===e.tagName){let s=e,t=s.childNodes,o="";[...s.classList].forEach(e=>{o+=e+" "}),[...t].forEach(function(e){if(3===e.nodeType){e.textContent.replace(/[\n\r]+|[\s]{2,}/g," ").trim().split(" ").map(function(e){e&&(n+=`<span class="word-wrapper ${o}"><span class="word">${e}&nbsp;</span></span>`)})}else 1===e.nodeType&&(n+=e.outerHTML)})}else n+=e.outerHTML}),e.innerHTML=n,e.querySelectorAll("span")}export function calculateLines(e){const s=[];let n=[];if(e.length>0){let t=e[0].offsetTop;[...e].forEach((o,p)=>{o.offsetTop===t&&n.push(o),o.offsetTop!==t&&(s.push(n),n=[],n.push(o),t=o.offsetTop),p===e.length-1&&s.push(n)})}return s}
+export function splitByWords(el) {
+  let nodes = el.childNodes;
+  let newHTML = "";
+  [...nodes].forEach(function (node) {
+    if (node.nodeType === 3) {
+      let textContent = node.textContent.replace(/[\n\r]+|[\s]{2,}/g, " ").trim();
+      let words = textContent.split(" ");
+      words.map(function (word) {
+        if (word) {
+          newHTML += `<span class="word-wrapper"><span class="word">${word}&nbsp;</span></span>`;
+        }
+      });
+    } else if (node.nodeType === 1) {
+      if (node.tagName === "SPAN") {
+        let innerSpanElement = node;
+        let spanChildNodes = innerSpanElement.childNodes;
+        let nodeClasses = "";
+        let nodeClassList = [...innerSpanElement.classList];
+        nodeClassList.forEach(nodeClass => {
+          nodeClasses += nodeClass + " ";
+        });
+        [...spanChildNodes].forEach(function (spanChildNode) {
+          if (spanChildNode.nodeType === 3) {
+            let textContent = spanChildNode.textContent.replace(/[\n\r]+|[\s]{2,}/g, " ").trim();
+            let words = textContent.split(" ");
+            words.map(function (word) {
+              if (word) {
+                newHTML += `<span class="word-wrapper ${nodeClasses}"><span class="word">${word}&nbsp;</span></span>`;
+              }
+            });
+          } else if (spanChildNode.nodeType === 1) {
+            newHTML += spanChildNode.outerHTML;
+          }
+        });
+      } else {
+        newHTML += node.outerHTML;
+      }
+    }
+  });
+  el.innerHTML = newHTML;
+  return el.querySelectorAll("span");
+}
+export function calculateLines(spans) {
+  const lines = [];
+  let words = [];
+  if (spans.length > 0) {
+    let position = spans[0].offsetTop;
+    [...spans].forEach((span, index) => {
+      if (span.offsetTop === position) {
+        words.push(span);
+      }
+      if (span.offsetTop !== position) {
+        lines.push(words);
+        words = [];
+        words.push(span);
+        position = span.offsetTop;
+      }
+      if (index === spans.length - 1) {
+        lines.push(words);
+      }
+    });
+  }
+  return lines;
+}

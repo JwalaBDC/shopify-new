@@ -1,1 +1,38 @@
-const g_ScrollingElement=document.scrollingElement||document.documentElement;window.scrollToPosition=function o(n,t,e){var l=n.scrollTop,c=t-l,u=0,i=function(){u+=10;var o=Math.easeInOutQuad(u,l,c,e);n.scrollTop=o,u<e&&setTimeout(i,10)};i()},window.scrollHorizontallyToPosition=function(o,n,t){var e=o.scrollLeft,l=n-e,c=0,u=function(){c+=10;var n=Math.easeInOutQuad(c,e,l,t);o.scrollLeft=n,c<t&&setTimeout(u,10)};u()},Math.easeInOutQuad=function(o,n,t,e){return(o/=e/2)<1?t/2*o*o+n:-t/2*(--o*(o-2)-1)+n};
+/* Scroll Functions */
+const g_ScrollingElement = document.scrollingElement || document.documentElement;
+window.scrollToPosition = function scrollToPosition(element, to, duration) {
+  var start = element.scrollTop,
+    change = to - start,
+    currentTime = 0,
+    increment = 10;
+  var animateScroll = function () {
+    currentTime += increment;
+    var val = Math.easeInOutQuad(currentTime, start, change, duration);
+    element.scrollTop = val;
+    if (currentTime < duration) {
+      setTimeout(animateScroll, increment);
+    }
+  };
+  animateScroll();
+};
+window.scrollHorizontallyToPosition = function (element, to, duration) {
+  var start = element.scrollLeft,
+    change = to - start,
+    currentTime = 0,
+    increment = 10;
+  var animateScroll = function () {
+    currentTime += increment;
+    var val = Math.easeInOutQuad(currentTime, start, change, duration);
+    element.scrollLeft = val;
+    if (currentTime < duration) {
+      setTimeout(animateScroll, increment);
+    }
+  };
+  animateScroll();
+};
+Math.easeInOutQuad = function (t, b, c, d) {
+  t /= d / 2;
+  if (t < 1) return c / 2 * t * t + b;
+  t--;
+  return -c / 2 * (t * (t - 2) - 1) + b;
+};

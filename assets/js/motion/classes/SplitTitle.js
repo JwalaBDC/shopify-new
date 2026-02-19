@@ -1,1 +1,63 @@
-import{calculateLines,splitByWords}from"./../../utils/splitText.js";export default class SplitTitle{constructor({element:t}){this.container=t,"split-title"===t.getAttribute("data-motion-element")?this.elements=[t]:this.elements=[...t.querySelectorAll('[data-motion-element="split-title"]')],this.init()}init(){this.elements.forEach(t=>{splitByWords(t),t.words=t.querySelectorAll(".word"),t.lines=calculateLines(t.words)})}animateIn(){this.isAnimatedIn||(this.isAnimatedIn=!0,this.elements.forEach(t=>{gsap.set(t,{opacity:1}),t.lines.forEach((t,e)=>{t.forEach((t,e)=>{gsap.fromTo(t,{opacity:0,yPercent:100},{opacity:1,yPercent:0,duration:.8,force3D:!0,ease:"expo.out"})})})}))}animateOut(){this.isAnimatedIn?this.container.dispatchEvent(new CustomEvent("unobserve")):this.elements.forEach(t=>{gsap.set(t,{opacity:0}),t.lines.forEach((t,e)=>{t.forEach((t,e)=>{gsap.set(t,{opacity:0,yPercent:100})})})})}}
+import { calculateLines, splitByWords } from "./../../utils/splitText.js";
+export default class SplitTitle {
+  constructor({
+    element
+  }) {
+    this.container = element;
+    if (element.getAttribute("data-motion-element") === "split-title") {
+      this.elements = [element];
+    } else {
+      this.elements = [...element.querySelectorAll('[data-motion-element="split-title"]')];
+    }
+    this.init();
+  }
+  init() {
+    this.elements.forEach(el => {
+      splitByWords(el);
+      el.words = el.querySelectorAll(".word");
+      el.lines = calculateLines(el.words);
+    });
+  }
+  animateIn() {
+    if (this.isAnimatedIn) return;
+    this.isAnimatedIn = true;
+    this.elements.forEach(el => {
+      gsap.set(el, {
+        opacity: 1
+      });
+      el.lines.forEach((words, index) => {
+        words.forEach((el, wordIndex) => {
+          gsap.fromTo(el, {
+            opacity: 0,
+            yPercent: 100
+          }, {
+            opacity: 1,
+            yPercent: 0,
+            duration: 0.8,
+            force3D: true,
+            ease: "expo.out"
+          });
+        });
+      });
+    });
+  }
+  animateOut() {
+    if (this.isAnimatedIn) {
+      this.container.dispatchEvent(new CustomEvent("unobserve"));
+      return;
+    }
+    this.elements.forEach(el => {
+      gsap.set(el, {
+        opacity: 0
+      });
+      el.lines.forEach((words, index) => {
+        words.forEach((el, wordIndex) => {
+          gsap.set(el, {
+            opacity: 0,
+            yPercent: 100
+          });
+        });
+      });
+    });
+  }
+}

@@ -1,1 +1,1 @@
-console.log("sections_product.js loaded");
+console.log('sections_product.js loaded');
