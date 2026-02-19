@@ -9,6 +9,35 @@
         }
     }
 
+    &__view-all {
+        margin-block-start: var(--space-xl);
+        a {
+            display: flex;
+            width: 320px;
+            height: 48px;
+            min-height: auto;
+            padding: 9px 17px;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            border-radius: 4px;
+            background: var(--Orange, #FF6B00);
+            margin-inline: auto;
+            color: var(--White, #FFF);
+            text-align: right;
+            font-family: $recoletaSemiBold;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+
+            &::before,
+            &::after {
+                display: none;
+            }
+        }
+    }
+
     .featured-collection-subtitle {
         display: inline-block;
         font-family: $recoletaRegular;
