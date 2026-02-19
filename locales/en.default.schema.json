@@ -1338,6 +1338,9 @@
         "image": {
           "label": "Image"
         },
+        "image_overlay": {
+          "label": "Overlay image"
+        },
         "height": {
           "options__1": {
             "label": "Adapt to image"

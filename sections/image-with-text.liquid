@@ -57,6 +57,15 @@
             {%- else -%}
               {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
             {%- endif -%}
+            {%- if section.settings.image_overlay != blank -%}
+              <div class="image-with-text__overlay">
+                {{
+                  section.settings.image_overlay
+                  | image_url: width: 900
+                  | image_tag: class: 'image-with-text__overlay-image', loading: 'lazy'
+                }}
+              </div>
+            {%- endif -%}
           </div>
         </div>
         <div class="image-with-text__text-item grid__item">
@@ -119,6 +128,11 @@
       "type": "image_picker",
       "id": "image",
       "label": "t:sections.image-with-text.settings.image.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_overlay",
+      "label": "t:sections.image-with-text.settings.image_overlay.label"
     },
     {
       "type": "select",

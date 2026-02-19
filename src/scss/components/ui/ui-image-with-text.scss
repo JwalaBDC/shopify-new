@@ -1,0 +1,56 @@
+@use "../../typography/fontVariables" as *;
+@use "../../abstracts/mixins-media" as *;
+
+.image-with-text {
+    &__media {
+        position: relative;
+    }
+
+    &__overlay {
+        position: absolute;
+        right: 2rem;
+        bottom: 2rem;
+        width: min(38%, 26rem);
+        z-index: 2;
+        pointer-events: none;
+    }
+
+    &__overlay-image {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    &__heading {
+        color: var(--Orange);
+        font-family: $recoletaSemiBold;
+        font-size: 43px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 120%;
+    }
+
+    &__text {
+        color: var(--Brown);
+        font-family: Recoleta;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    &__content {
+        padding: 0;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 749px) {
+    .image-with-text {
+        &__overlay {
+            right: 1rem;
+            bottom: 1rem;
+            width: min(48%, 18rem);
+        }
+    }
+}

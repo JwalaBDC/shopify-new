@@ -100,7 +100,7 @@
         "show_product_count": true,
         "show_subtitle_row": true,
         "subtitle_lead": "Artisans of the rusk",
-        "subtitle_icon": "shopify://shop_images/250_gms_2.png",
+        "subtitle_icon": "shopify://shop_images/rusk.png",
         "subtitle_icon_alt": "Biscuit icon",
         "subtitle_icon_size": 28,
         "subtitle_tail": "since 1956. Dishing out delights since forever.",
@@ -127,11 +127,60 @@
         "padding_top": 44,
         "padding_bottom": 36
       }
+    },
+    "image_with_text_4XNtBV": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_8KKce9": {
+          "type": "heading",
+          "settings": {
+            "heading": "Delights from Doon.Baked with love since 1956.",
+            "heading_size": "h2"
+          }
+        },
+        "text_DAETGz": {
+          "type": "text",
+          "settings": {
+            "text": "<p>In a busy market lane of one of the oldest cities in India, Dehradun, stands Sunrise Bakers.</p>",
+            "text_style": "body"
+          }
+        },
+        "button_nfUMgV": {
+          "type": "button",
+          "settings": {
+            "button_label": "Discover",
+            "button_link": "",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_8KKce9",
+        "text_DAETGz",
+        "button_nfUMgV"
+      ],
+      "custom_css": [],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "image_behavior": "ambient",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
     "image_banner",
     "featured_collection_NBGfpB",
-    "featured_collection"
+    "featured_collection",
+    "image_with_text_4XNtBV"
   ]
 }
