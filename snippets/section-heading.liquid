@@ -1,0 +1,14 @@
+{%- comment -%}
+  Reusable heading component
+  Params:
+  - title (string)
+  - subtitle (string, optional)
+{%- endcomment -%}
+
+<div class="section-heading">
+  {% if subtitle != blank %}
+    <p class="section-heading__subtitle">{{ subtitle }}</p>
+  {% endif %}
+
+  <h2 class="section-heading__title">{{ title }}</h2>
+</div>
