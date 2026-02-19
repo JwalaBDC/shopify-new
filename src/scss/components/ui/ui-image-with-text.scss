@@ -51,9 +51,13 @@
     &__overlay {
         width: 379.975px !important;
         height: 429.537px !important;
+        right: 4rem !important;
+        left: auto !important;
+        top: auto !important;
+        bottom: -8rem;
     }
 
-    &__media{
+    &__media {
         overflow: visible !important;
     }
 
