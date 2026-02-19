@@ -28,6 +28,7 @@
         font-style: normal;
         font-weight: 700;
         line-height: 120%;
+        text-wrap: balance;
     }
 
     &__text {
@@ -37,11 +38,40 @@
         font-style: normal;
         font-weight: 400;
         line-height: normal;
+        margin-block-start: var(--space-3xs) !important;
     }
 
     &__content {
-        padding: 0;
+        padding: 0 !important;
+        justify-content: end !important;
+        margin-right: auto;
+        margin-left: 0 !important;
+    }
+
+    .button {
+        display: flex;
+        width: 142px;
+        height: 48px;
+        padding: 10px 0;
         justify-content: center;
+        align-items: center;
+        gap: 10px;
+        border-radius: 4px;
+        background: var(--Orange);
+        color: var(--White);
+        text-align: center;
+        font-family: "Recoleta Alt";
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        margin-block-start: var(--space-3xs) !important;
+        min-height: auto;
+        min-width: auto;
+        &::after,
+        &::before {
+            display: none;
+        }
     }
 }
 
