@@ -1,4 +1,41 @@
+@use "../typography/fontVariables" as *;
+@use "../abstracts/mixins-media" as *;
+
 .quick-add {
+
+  &__submit,
+  &__counter {
+    border-radius: 4px;
+    border: 1px solid var(--Orange, #FF6B00);
+    background: var(--White, #FFF);
+    display: flex;
+    height: 48px;
+    padding: 8px 24px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    min-height: auto !important;
+
+    color: var(--Orange, #FF6B00);
+    text-align: center;
+    font-family: $recoletaSemiBold;
+    font-size: 18px !important;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+
+    &-value,
+    &-btn {
+      color: var(--Orange, #FF6B00) !important;
+      font-size: 18px !important;
+    }
+
+    &::before,
+    &::after {
+      display: none;
+    }
+  }
+
   .quick-add__switch {
     .quick-add__counter {
       display: none;

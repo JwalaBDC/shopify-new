@@ -1,9 +1,12 @@
 @use "../abstracts/index" as *;
+
 html {
 	scroll-padding-top: var(--h-header);
+
 	&.force-scroll {
 		height: 120vh;
 	}
+
 	&.show-modal-overlay main::before {
 		content: "";
 		position: fixed;
@@ -21,6 +24,7 @@ body.fix-body-scroll {
 	inline-size: 100%;
 	overflow-y: scroll;
 }
+
 html.freeze-scroll body {
 	//height: 100dvh;
 	// overflow: hidden;
@@ -34,46 +38,55 @@ sup {
 [hidden] {
 	display: none !important;
 }
+
 *:focus {
 	outline: none;
 }
+
 .using-keyboard *:focus-visible {
 	outline: 1px solid white;
 	outline-offset: 1px;
 	box-shadow: inset 0 0 0 1px black;
 }
+
 .using-touch {
 	* {
-		-webkit-touch-callout: none; /* Disable touch callout (iOS) */
+		-webkit-touch-callout: none;
+		/* Disable touch callout (iOS) */
 	}
+
 	*:focus-visible {
 		outline: none; //need to check how we can handle this. programmatically focused elements are showing an outline
 		box-shadow: none;
 	}
 }
+
 .disable-hover * {
 	pointer-events: none;
 }
 
 /* Apply the selection style for modern browsers */
 ::selection {
-	background-color: var(--c-primary-blue); /* Dark purple */
+	background-color: var(--c-primary-blue);
+	/* Dark purple */
 	color: var(--c-bg-white);
 }
 
 /* Apply the selection style for older WebKit browsers (Safari) */
 ::-moz-selection {
-	background-color: var(--c-primary-blue); /* Dark purple */
+	background-color: var(--c-primary-blue);
+	/* Dark purple */
 	color: var(--c-bg-white);
 }
 
 /* Apply the selection style for Firefox */
 ::-webkit-selection {
-	background-color: var(--c-primary-blue); /* Dark purple */
+	background-color: var(--c-primary-blue);
+	/* Dark purple */
 	color: var(--c-bg-white);
 }
 
-[no-pointer]{
+[no-pointer] {
 	pointer-events: none;
 }
 
@@ -82,8 +95,19 @@ sup {
 		.ui-header {
 			position: fixed;
 		}
+
 		main {
 			margin-top: var(--h-header);
 		}
+	}
+}
+
+.page-width {
+	max-width: var(--w-max);
+	padding: 0 var(--space-l);
+
+	@include media("<sm") {
+		max-width: 100%;
+		padding: 0 var(--space-2xs);
 	}
 }
