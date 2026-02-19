@@ -48,6 +48,15 @@
         margin-left: 0 !important;
     }
 
+    &__overlay {
+        width: 379.975px !important;
+        height: 429.537px !important;
+    }
+
+    &__media{
+        overflow: visible !important;
+    }
+
     .button {
         display: flex;
         width: 142px;
@@ -68,6 +77,7 @@
         margin-block-start: var(--space-3xs) !important;
         min-height: auto;
         min-width: auto;
+
         &::after,
         &::before {
             display: none;

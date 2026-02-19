@@ -149,7 +149,7 @@
           "type": "button",
           "settings": {
             "button_label": "Discover",
-            "button_link": "",
+            "button_link": "shopify://collections",
             "button_style_secondary": false
           }
         }
@@ -162,6 +162,8 @@
       "custom_css": [],
       "name": "t:sections.image-with-text.presets.name",
       "settings": {
+        "image": "shopify://shop_images/6_Old-Store_1.png",
+        "image_overlay": "shopify://shop_images/Old_Gen.png",
         "height": "adapt",
         "desktop_image_width": "medium",
         "layout": "text_first",
