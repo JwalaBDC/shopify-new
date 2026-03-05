@@ -76,62 +76,56 @@ class SliderInterface extends HTMLElement {
 	setScrollIndicatorThumbDimensions() {
 		this.sliderScrollIndicatorThumbs.forEach((thumb, index) => {
 			const track = this.sliderScrollIndicatorTracks[index];
+			const cardList = this.cardLists[index];
+			if (!track || !thumb || !cardList) return;
 			const trackWidth = track.offsetWidth;
-			const scrollWidth = this.cardLists[index].scrollWidth;
-			const offsetWidth = this.cardLists[index].offsetWidth;
+			const scrollWidth = cardList.scrollWidth;
+			const offsetWidth = cardList.offsetWidth;
+			const indicatorContainer = track.closest(".m-slider-scroll-indicator") || track.parentElement;
 			const percentOfVisibleArea = (offsetWidth * 100) / scrollWidth;
-			const thumbWidth = percentOfVisibleArea < 100 ? (percentOfVisibleArea * trackWidth) / 100 : 0;
+			const thumbWidth = percentOfVisibleArea < 100 ? Math.max(20, (percentOfVisibleArea * trackWidth) / 100) : 0;
 			if (!this.scrollMapRangeObjects) {
 				this.scrollMapRangeObjects = [];
-				this.scrollMapRangeObjects.push({
-					inMin: 0,
-					inMax: 0,
-					outMin: 0,
-					outMax: 0,
-				});
 			}
 			this.scrollMapRangeObjects[index] = {
 				inMin: 0,
-				inMax: scrollWidth - offsetWidth,
+				inMax: Math.max(0, scrollWidth - offsetWidth),
 				outMin: 0,
-				outMax: trackWidth - thumbWidth,
+				outMax: Math.max(0, trackWidth - thumbWidth),
 			};
 			thumb.style.width = `${thumbWidth}px`;
 
-			if (scrollWidth <= offsetWidth) {
-				track.parentElement.parentElement.style.display = 'none';
-			} else {
-				track.parentElement.parentElement.style.display = 'flex';
-
-				requestAnimationFrame(() => {
-					this.setScrollIndicatorThumbDimensions();
-				});
+			if (indicatorContainer) {
+				indicatorContainer.style.display = scrollWidth <= offsetWidth ? "none" : "block";
 			}
 
-
+			if (scrollWidth <= offsetWidth || trackWidth <= 0) {
+				thumb.style.transform = "translate3d(0, 0, 0)";
+			} else {
+				this.updateScrollIndicatorThumbPositions();
+			}
 		});
 	}
 	updateScrollIndicatorThumbPositions() {
 		this.sliderScrollIndicatorThumbs.forEach((thumb, index) => {
+			const range = this.scrollMapRangeObjects && this.scrollMapRangeObjects[index];
+			const cardList = this.cardLists[index];
+			if (!range || !cardList) return;
 			const { inMin, inMax, outMin, outMax } = this.scrollMapRangeObjects[index];
-			const scrollLeft = this.cardLists[index].scrollLeft;
-			let thumbX = 0;
-			if (scrollLeft === 0) {
-				thumbX = 0;
-			} else {
-				thumbX = gsap.utils.mapRange(inMin, inMax, outMin, outMax, scrollLeft);
-				thumbX = gsap.utils.clamp(outMin, outMax, thumbX);
-			}
+			const scrollLeft = cardList.scrollLeft;
+			const progress = inMax <= inMin ? 0 : (scrollLeft - inMin) / (inMax - inMin);
+			const clampedProgress = Math.max(0, Math.min(1, progress));
+			const thumbX = outMin + (outMax - outMin) * clampedProgress;
 			thumb.style.transform = `translate3d(${thumbX}px, 0, 0)`;
 		});
 	}
 	reinitialize() {
-		this.unobserveElements(this.cards);
-		this.unobserveElements(this.cardLists);
+		this.unobserveCards(this.cards);
+		this.unobserveCardLists(this.cardLists);
 		this.cardLists = [...this.querySelectorAll("[slider-card-list]")];
 		this.cards = [...this.querySelectorAll("[slider-card]")];
-		this.observeElements(this.cards);
-		this.observeElements(this.cardLists);
+		this.observeCards(this.cards);
+		this.observeCardLists(this.cardLists);
 	}
 	setupCardObserver() {
 		this.cardObserver = new IntersectionObserver(
@@ -153,7 +147,7 @@ class SliderInterface extends HTMLElement {
 				});
 			},
 			{
-				root: document.documentElement,
+				root: null,
 				threshold: 0.99,
 			} //0.99 seems to work and 1 doesn't on iOS when the parent is overflow:auto
 		);
@@ -173,7 +167,7 @@ class SliderInterface extends HTMLElement {
 				});
 			},
 			{
-				root: document.documentElement,
+				root: null,
 				threshold: 0.1,
 			}
 		);
@@ -199,22 +193,18 @@ class SliderInterface extends HTMLElement {
 		}
 	}
 	setSliderBtnState() {
-		//if in any of the card lists,  the first card is visible, the previous button can be disabled
-		let isFirstCardVisible = this.cardLists.some((cardList) => {
-			const firstCard = cardList.querySelector("[slider-card]");
-			return firstCard && firstCard.getAttribute("aria-hidden") === "false";
-		});
+		const activeCardList = this.getActiveCardList();
+		if (!activeCardList) return;
+
+		const maxScrollLeft = activeCardList.scrollWidth - activeCardList.clientWidth;
+		const isAtStart = activeCardList.scrollLeft <= 1;
+		const isAtEnd = maxScrollLeft <= 1 || activeCardList.scrollLeft >= maxScrollLeft - 1;
+
 		for (const btn of this.prevBtns) {
-			btn.disabled = isFirstCardVisible;
+			btn.disabled = isAtStart;
 		}
-		//if the last card in the set is visible, the next button can be disabled
-		let isLastCardVisible = this.cardLists.some((cardList) => {
-			const cards = cardList.querySelectorAll("[slider-card]");
-			const lastCard = cards[cards.length - 1];
-			return lastCard && lastCard.getAttribute("aria-hidden") === "false";
-		});
 		for (const btn of this.nextBtns) {
-			btn.disabled = isLastCardVisible;
+			btn.disabled = isAtEnd;
 		}
 	}
 	setSliderNavVisibility() {
@@ -222,9 +212,10 @@ class SliderInterface extends HTMLElement {
 		//if all cards are visible for the visible card list => btns not required, therefore hide buttons, else show buttons
 		setTimeout(() => {
 			const visibleCardLists = Array.from(this.cardLists).filter((cardList) => cardList.classList.contains("is-visible"));
+			const activeCardLists = visibleCardLists.length > 0 ? visibleCardLists : this.cardLists.slice(0, 1);
 			const allCardsVisible =
-				visibleCardLists.length === 0 ||
-				visibleCardLists.some((cardList) => {
+				activeCardLists.length === 0 ||
+				activeCardLists.some((cardList) => {
 					const cards = cardList.querySelectorAll("[slider-card]");
 					return Array.from(cards).every((card) => card.getAttribute("aria-hidden") === "false");
 				});
@@ -236,6 +227,7 @@ class SliderInterface extends HTMLElement {
 	createScrollHandler() {
 		return (e) => {
 			this.updateScrollIndicatorThumbPositions();
+			this.setSliderBtnState();
 			const cardList = e.currentTarget;
 			cardList.disableSliderBtnClicks = true;
 			for (const btn of this.nextBtns) {
@@ -263,46 +255,80 @@ class SliderInterface extends HTMLElement {
 		}
 		return cardsPerSlide;
 	}
+	getActiveCardList() {
+		return this.cardLists.find((cardList) => cardList.classList.contains("is-visible")) || this.cardLists[0] || null;
+	}
+	getCurrentCardIndex(cardList, cards) {
+		const observerIndex = cards.findIndex((card) => card.getAttribute("aria-hidden") === "false");
+		if (observerIndex >= 0) return observerIndex;
+
+		const scrollLeft = cardList.scrollLeft;
+		let closestIndex = 0;
+		let closestDistance = Number.POSITIVE_INFINITY;
+
+		cards.forEach((card, index) => {
+			const distance = Math.abs(card.offsetLeft - scrollLeft);
+			if (distance < closestDistance) {
+				closestDistance = distance;
+				closestIndex = index;
+			}
+		});
+
+		return closestIndex;
+	}
+	getScrollStep(cardList, cardsPerSlide) {
+		const firstCard = cardList.querySelector("[slider-card]");
+		if (!firstCard) return cardList.clientWidth * 0.9;
+		const firstCardStyles = window.getComputedStyle(firstCard);
+		const cardWidth = firstCard.getBoundingClientRect().width;
+		const marginRight = parseFloat(firstCardStyles.marginRight || "0");
+		return (cardWidth + marginRight) * Math.max(cardsPerSlide, 1);
+	}
 	createNextClickHandler() {
 		return () => {
-			const visibleCardList = this.cardLists.find((cardList) => cardList.classList.contains("is-visible"));
+			const visibleCardList = this.getActiveCardList();
 			if (!visibleCardList) return;
 			const cards = [...visibleCardList.querySelectorAll("[slider-card]")];
-			const visibleCardIndex = cards.findIndex((card) => card.getAttribute("aria-hidden") === "false");
-			const nextCard = cards[visibleCardIndex + 1];
+			if (cards.length === 0) return;
 			if (visibleCardList.disableSliderBtnClicks) return;
-			if (nextCard) {
-				const cardsPerSlide = this.getCardsPerSlide(visibleCardList);
-				this.scrollToCardList(visibleCardList);
-				visibleCardList.scrollTo({
-					left: nextCard.getBoundingClientRect().width * (visibleCardIndex + cardsPerSlide),
-					behavior: "smooth",
-				});
-			}
+
+			const cardsPerSlide = this.getCardsPerSlide(visibleCardList);
+			const step = this.getScrollStep(visibleCardList, cardsPerSlide);
+			const maxScrollLeft = Math.max(0, visibleCardList.scrollWidth - visibleCardList.clientWidth);
+			const targetLeft = Math.min(maxScrollLeft, visibleCardList.scrollLeft + step);
+			if (Math.abs(targetLeft - visibleCardList.scrollLeft) < 1) return;
+
+			this.scrollToCardList(visibleCardList);
+			visibleCardList.scrollTo({
+				left: targetLeft,
+				behavior: "smooth",
+			});
 		};
 	}
 
 	createPrevClickHandler() {
 		return () => {
-			const visibleCardList = this.cardLists.find((cardList) => cardList.classList.contains("is-visible"));
+			const visibleCardList = this.getActiveCardList();
 			if (!visibleCardList) return;
 			const cards = [...visibleCardList.querySelectorAll("[slider-card]")];
-			const visibleCardIndex = cards.findIndex((card) => card.getAttribute("aria-hidden") === "false");
-			const prevCard = cards[visibleCardIndex - 1];
+			if (cards.length === 0) return;
 			if (visibleCardList.disableSliderBtnClicks) return;
-			if (prevCard) {
-				const cardsPerSlide = this.getCardsPerSlide(visibleCardList);
-				this.scrollToCardList(visibleCardList);
-				visibleCardList.scrollTo({
-					left: prevCard.getBoundingClientRect().width * (visibleCardIndex - cardsPerSlide),
-					behavior: "smooth",
-				});
-			}
+
+			const cardsPerSlide = this.getCardsPerSlide(visibleCardList);
+			const step = this.getScrollStep(visibleCardList, cardsPerSlide);
+			const targetLeft = Math.max(0, visibleCardList.scrollLeft - step);
+			if (Math.abs(targetLeft - visibleCardList.scrollLeft) < 1) return;
+
+			this.scrollToCardList(visibleCardList);
+			visibleCardList.scrollTo({
+				left: targetLeft,
+				behavior: "smooth",
+			});
 		};
 	}
 	/* scrollToCardList */
 	scrollToCardList(cardList) {
-		let top;
+		let top = 0;
 		const cardListBoundingBox = this.getBoundingClientRect();
 		const windowHeight = window.innerHeight;
 		const hiddenFromBottom = cardListBoundingBox.bottom - windowHeight;
@@ -329,6 +355,13 @@ class SliderInterface extends HTMLElement {
 		this.setScrollIndicatorThumbDimensions();
 		this.observeCards(this.cards);
 		this.observeCardLists(this.cardLists);
+		if (this.cardLists.length > 0 && !this.cardLists.some((cardList) => cardList.classList.contains("is-visible"))) {
+			this.cardLists[0].classList.add("is-visible");
+		}
+		this.setSliderBtnState();
+		this.setSliderNavVisibility();
+		this.resizeHandler = () => this.setScrollIndicatorThumbDimensions();
+		window.addEventListener("resize", this.resizeHandler);
 		for (const cardList of this.cardLists) {
 			cardList.addEventListener("scroll", this.scrollHandler);
 		}
@@ -342,6 +375,7 @@ class SliderInterface extends HTMLElement {
 	}
 	/* remove listeners */
 	disconnectedCallback() {
+		window.removeEventListener("resize", this.resizeHandler);
 		this.unobserveCards(this.cards);
 		this.unobserveCardLists(this.cardLists);
 		for (const cardList of this.cardLists) {
@@ -356,6 +390,9 @@ class SliderInterface extends HTMLElement {
 	}
 }
 customElements.define("slider-interface", SliderInterface);
+
+console.log('::Slider Interface loaded::');
+
 
 
 

@@ -17,6 +17,13 @@
 // @use 'layout/header';
 // @use 'layout/footer';
 
+
+
+/* =========================================
+   Molecules
+========================================= */
+@use 'molecules/m-slider-scroll-indicator';
+
 /* =========================================
    COMPONENTS
 ========================================= */
@@ -27,6 +34,8 @@
 @use 'components/ui/ui-hero-banner';
 @use 'components/ui/ui-card-product';
 @use 'components/ui/ui-image-with-text';
+@use 'components/ui-category-slider';
+@use 'components/ui-product-card';
 // @use 'components/ui/ui-brand-strip';
 
 /* =========================================
@@ -36,11 +45,11 @@
 // @use 'sections/product';  
 
 
-main{
+main {
    position: absolute;
-    background-color: pinky;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    width: 100%;
+   background-color: pinky;
+   z-index: 1;
+   top: 0;
+   left: 0;
+   width: 100%;
 }

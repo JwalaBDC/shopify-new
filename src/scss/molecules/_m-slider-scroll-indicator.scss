@@ -1,0 +1,27 @@
+// @use "@abstracts" as *;
+.m-slider-scroll-indicator {
+	&__track {
+		position: relative;
+		height: 2px;
+		background-color: var(--c-border-gray);
+		border-radius: 50px;
+		width: 240px;
+		// @include media("<sm") {
+		// 	width: 140px;
+		// }
+		// @include media(">=sm", "<md") {
+		// 	width: 240px;
+		// }
+	}
+
+	&__thumb {
+		position: absolute;
+		top: 0;
+		left: 0;
+		min-width: auto;
+		height: 100%;
+		background-color: var(--c-text-secondary);
+		border-radius: 50px;
+		display: flex !important;
+	}
+}

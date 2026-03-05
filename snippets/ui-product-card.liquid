@@ -1,0 +1,16 @@
+<a href="{{ link }}" class="ui-product-card">
+
+  {% if image %}
+    <div class="ui-product-card__image">
+      <img
+        src="{{ image | image_url: width: 500 }}"
+        alt="{{ title }}"
+        loading="lazy">
+    </div>
+  {% endif %}
+
+  <div class="ui-product-card__title">
+    {{ title }}
+  </div>
+
+</a>

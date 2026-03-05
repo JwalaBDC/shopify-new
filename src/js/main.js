@@ -4,6 +4,7 @@ console.log("MAIN JS LOADED");
 import scrollManager from "./managers/ScrollManager.js";
 import BrowserManager from "./managers/BrowserManager.js";
 import DeviceManager from "./managers/DeviceManager.js";
+import "./interfaces/slider-interface.js";
 // import ImageManager from "./managers/ImageManager.js";
 
 /* helpers */
