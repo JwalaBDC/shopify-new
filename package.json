@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "shopify theme dev --store jwala-new.myshopify.com",
-    "pull_theme": "shopify theme pull --theme 155327365269",
+    "pull_theme": "shopify theme pull --theme 155627618453",
     "build:scss": "node src/scss/build-scss.js",
     "build:scss:watch": "node src/scss/build-scss.js --watch",
     "build:js": "babel src/js --out-dir assets/js --ignore node_modules,src/js/minify.js,src/js/minify-dist.js,**/*.bkp.js,**/.DS_Store && node src/js/minify.js",
