@@ -1,0 +1,121 @@
+{%- if section.blocks.size > 0 -%}
+  {{ 'css/components/ui/ui-brand-strip.css' | asset_url | stylesheet_tag }}
+  <div id="ui-brand-strip-{{ section.id }}" class="ui-brand-strip">
+    <div class="page-width">
+      <ul class="ui-brand-strip__list" role="list">
+        {%- for block in section.blocks -%}
+          {%- assign brand_label = block.settings.label | strip -%}
+          {%- if brand_label != blank -%}
+            <li class="ui-brand-strip__item" {{ block.shopify_attributes }}>
+              {%- if block.settings.link != blank -%}
+                <a class="ui-brand-strip__link" href="{{ block.settings.link }}">{{ brand_label | escape }}</a>
+              {%- else -%}
+                <span class="ui-brand-strip__text">{{ brand_label | escape }}</span>
+              {%- endif -%}
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </div>
+  </div>
+
+  {%- style -%}
+    #ui-brand-strip-{{ section.id }} {
+      --ui-brand-strip-bg: {{ section.settings.background_color }};
+      --ui-brand-strip-text: {{ section.settings.text_color }};
+      --ui-brand-strip-font-size: {{ section.settings.font_size }}px;
+      --ui-brand-strip-gap: {{ section.settings.item_gap }}px;
+      --ui-brand-strip-padding-top: {{ section.settings.padding_top }}px;
+      --ui-brand-strip-padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  {%- endstyle -%}
+{%- endif -%}
+
+{% schema %}
+  {
+    "name": "UI Brand Strip",
+    "tag": "section",
+    "class": "section-ui-brand-strip",
+    "max_blocks": 12,
+    "settings": [
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background color",
+        "default": "#8B0000"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text color",
+        "default": "#C8B9AE"
+      },
+      {
+        "type": "range",
+        "id": "font_size",
+        "label": "Font size",
+        "min": 10,
+        "max": 20,
+        "step": 1,
+        "unit": "px",
+        "default": 13
+      },
+      {
+        "type": "range",
+        "id": "item_gap",
+        "label": "Item gap",
+        "min": 8,
+        "max": 48,
+        "step": 1,
+        "unit": "px",
+        "default": 20
+      }, {
+        "type": "range",
+        "id": "padding_top",
+        "label": "Top padding",
+        "min": 0,
+        "max": 24,
+        "step": 1,
+        "unit": "px",
+        "default": 12
+      }, {
+        "type": "range",
+        "id": "padding_bottom",
+        "label": "Bottom padding",
+        "min": 0,
+        "max": 24,
+        "step": 1,
+        "unit": "px",
+        "default": 12
+      }
+    ],
+    "blocks": [
+      {
+        "type": "brand",
+        "name": "Brand",
+        "settings": [
+          {
+            "type": "text",
+            "id": "label",
+            "label": "Label",
+            "default": "Brand"
+          }, {
+            "type": "url",
+            "id": "link",
+            "label": "Link"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "UI Brand Strip",
+        "blocks": [
+          {
+            "type": "brand"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
