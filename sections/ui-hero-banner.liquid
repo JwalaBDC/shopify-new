@@ -1,0 +1,409 @@
+{%- liquid
+  assign media_type = section.settings.media_type
+  assign desktop_image = section.settings.image_desktop
+  assign mobile_image = section.settings.image_mobile
+  assign desktop_video = section.settings.video_desktop
+  assign mobile_video = section.settings.video_mobile
+  assign desktop_poster = section.settings.poster_desktop
+  assign mobile_poster = section.settings.poster_mobile
+
+  assign horizontal_class = 'ui-hero-banner--h-' | append: section.settings.content_horizontal
+  assign vertical_class = 'ui-hero-banner--v-' | append: section.settings.content_vertical
+
+  assign desktop_overlay_opacity = section.settings.overlay_opacity | times: 0.01
+-%}
+
+<section class="ui-hero-banner {{ horizontal_class }} {{ vertical_class }}" id="ui-hero-banner-{{ section.id }}">
+  <div class="ui-hero-banner__media ui-hero-banner__media--desktop">
+    {%- if media_type == 'video' and desktop_video != blank -%}
+      <video
+        class="ui-hero-banner__media-item"
+        {% if desktop_poster != blank %}
+        poster="{{ desktop_poster | image_url: width: 2400 }}"
+        {% endif %}
+        autoplay
+        playsinline
+        {% if section.settings.video_loop %}
+        loop
+        {% endif %}
+        {% if section.settings.video_muted %}
+        muted
+        {% endif %}
+        {% if section.settings.show_video_controls %}
+        controls
+        {% endif %}>
+        {%- for source in desktop_video.sources -%}
+          <source src="{{ source.url }}" type="{{ source.mime_type }}">
+        {%- endfor -%}
+      </video>
+    {%- elsif desktop_image != blank -%}
+      {%- liquid
+        assign desktop_height = desktop_image.width | divided_by: desktop_image.aspect_ratio
+      -%}
+      {{
+        desktop_image | image_url: width: 3840 | image_tag: class: 'ui-hero-banner__media-item', width: desktop_image.width, height: desktop_height, sizes: '100vw', widths: '375, 550, 750, 1100, 1500, 2000, 3000, 3840', loading: 'eager'
+      }}
+    {%- elsif desktop_poster != blank -%}
+      {%- liquid
+        assign desktop_poster_height = desktop_poster.width | divided_by: desktop_poster.aspect_ratio
+      -%}
+      {{
+        desktop_poster | image_url: width: 3840 | image_tag: class: 'ui-hero-banner__media-item', width: desktop_poster.width, height: desktop_poster_height, sizes: '100vw', widths: '375, 550, 750, 1100, 1500, 2000, 3000, 3840', loading: 'eager'
+      }}
+    {%- else -%}
+      {{ 'hero-apparel-1' | placeholder_svg_tag: 'ui-hero-banner__media-item placeholder-svg' }}
+    {%- endif -%}
+  </div>
+
+  <div class="ui-hero-banner__media ui-hero-banner__media--mobile">
+    {%- if media_type == 'video' and mobile_video != blank -%}
+      <video
+        class="ui-hero-banner__media-item"
+        {% if mobile_poster != blank %}
+        poster="{{ mobile_poster | image_url: width: 1600 }}"
+        {% endif %}
+        autoplay
+        playsinline
+        {% if section.settings.video_loop %}
+        loop
+        {% endif %}
+        {% if section.settings.video_muted %}
+        muted
+        {% endif %}
+        {% if section.settings.show_video_controls %}
+        controls
+        {% endif %}>
+        {%- for source in mobile_video.sources -%}
+          <source src="{{ source.url }}" type="{{ source.mime_type }}">
+        {%- endfor -%}
+      </video>
+    {%- elsif mobile_image != blank -%}
+      {%- liquid
+        assign mobile_height = mobile_image.width | divided_by: mobile_image.aspect_ratio
+      -%}
+      {{
+        mobile_image | image_url: width: 2000 | image_tag: class: 'ui-hero-banner__media-item', width: mobile_image.width, height: mobile_height, sizes: '100vw', widths: '375, 550, 750, 1100, 1500, 2000', loading: 'lazy'
+      }}
+    {%- elsif mobile_poster != blank -%}
+      {%- liquid
+        assign mobile_poster_height = mobile_poster.width | divided_by: mobile_poster.aspect_ratio
+      -%}
+      {{
+        mobile_poster | image_url: width: 2000 | image_tag: class: 'ui-hero-banner__media-item', width: mobile_poster.width, height: mobile_poster_height, sizes: '100vw', widths: '375, 550, 750, 1100, 1500, 2000', loading: 'lazy'
+      }}
+    {%- else -%}
+      {%- if media_type == 'video' and desktop_video != blank -%}
+        <video
+          class="ui-hero-banner__media-item"
+          {% if mobile_poster != blank %}
+          poster="{{ mobile_poster | image_url: width: 1600 }}"
+          {% elsif desktop_poster != blank %}
+          poster="{{ desktop_poster | image_url: width: 1600 }}"
+          {% endif %}
+          autoplay
+          playsinline
+          {% if section.settings.video_loop %}
+          loop
+          {% endif %}
+          {% if section.settings.video_muted %}
+          muted
+          {% endif %}
+          {% if section.settings.show_video_controls %}
+          controls
+          {% endif %}>
+          {%- for source in desktop_video.sources -%}
+            <source src="{{ source.url }}" type="{{ source.mime_type }}">
+          {%- endfor -%}
+        </video>
+      {%- elsif desktop_image != blank -%}
+        {%- liquid
+          assign desktop_mobile_height = desktop_image.width | divided_by: desktop_image.aspect_ratio
+        -%}
+        {{
+          desktop_image | image_url: width: 2000 | image_tag: class: 'ui-hero-banner__media-item', width: desktop_image.width, height: desktop_mobile_height, sizes: '100vw', widths: '375, 550, 750, 1100, 1500, 2000', loading: 'lazy'
+        }}
+      {%- elsif desktop_poster != blank -%}
+        {%- liquid
+          assign desktop_poster_mobile_height = desktop_poster.width | divided_by: desktop_poster.aspect_ratio
+        -%}
+        {{
+          desktop_poster | image_url: width: 2000 | image_tag: class: 'ui-hero-banner__media-item', width: desktop_poster.width, height: desktop_poster_mobile_height, sizes: '100vw', widths: '375, 550, 750, 1100, 1500, 2000', loading: 'lazy'
+        }}
+      {%- else -%}
+        {{ 'hero-apparel-1' | placeholder_svg_tag: 'ui-hero-banner__media-item placeholder-svg' }}
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+
+  <div class="ui-hero-banner__overlay"></div>
+
+  <div class="ui-hero-banner__inner page-width">
+    <div class="ui-hero-banner__content">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="ui-hero-banner__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.title != blank -%}
+        <h2 class="ui-hero-banner__title">{{ section.settings.title }}</h2>
+      {%- endif -%}
+
+      {%- if section.settings.description != blank -%}
+        <div class="ui-hero-banner__desc rte">{{ section.settings.description }}</div>
+      {%- endif -%}
+
+      {%- if section.settings.button_label != blank -%}
+        <div class="ui-hero-banner__actions">
+          {%- if section.settings.button_link != blank -%}
+            <a class="ui-hero-banner__button" href="{{ section.settings.button_link }}">
+              {{- section.settings.button_label | escape -}}
+            </a>
+          {%- else -%}
+            <span
+              class="ui-hero-banner__button"
+              role="link"
+              aria-disabled="true">
+              {{- section.settings.button_label | escape -}}
+            </span>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{%- style -%}
+  #ui-hero-banner-{{ section.id }} {
+    --ui-hero-min-height: {{ section.settings.height_desktop }}px;
+    --ui-hero-min-height-mobile: {{ section.settings.height_mobile }}px;
+    --ui-hero-overlay-color: {{ section.settings.overlay_color }};
+    --ui-hero-overlay-opacity: {{ desktop_overlay_opacity }};
+    --ui-hero-content-max-width: {{ section.settings.content_max_width }}rem;
+    --ui-hero-content-padding-y: {{ section.settings.padding_y }}px;
+    --ui-hero-content-padding-x: {{ section.settings.padding_x }}px;
+    --ui-hero-text-color: {{ section.settings.text_color }};
+    --ui-hero-button-border: {{ section.settings.button_border_color }};
+    --ui-hero-button-color: {{ section.settings.button_text_color }};
+    --ui-hero-button-bg: {{ section.settings.button_background_color }};
+  }
+{%- endstyle -%}
+
+{% schema %}
+  {
+    "name": "UI Hero Banner",
+    "tag": "section",
+    "class": "section-ui-hero-banner",
+    "disabled_on": {
+      "groups": ["header", "footer"]
+    },
+    "settings": [
+      {
+        "type": "header",
+        "content": "Media"
+      },
+      {
+        "type": "select",
+        "id": "media_type",
+        "label": "Media type",
+        "options": [
+          {
+            "value": "image",
+            "label": "Image"
+          }, {
+            "value": "video",
+            "label": "Video"
+          }
+        ],
+        "default": "image"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_desktop",
+        "label": "Desktop image"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_mobile",
+        "label": "Mobile image"
+      }, {
+        "type": "video",
+        "id": "video_desktop",
+        "label": "Desktop video"
+      }, {
+        "type": "video",
+        "id": "video_mobile",
+        "label": "Mobile video"
+      }, {
+        "type": "image_picker",
+        "id": "poster_desktop",
+        "label": "Desktop poster image"
+      }, {
+        "type": "image_picker",
+        "id": "poster_mobile",
+        "label": "Mobile poster image"
+      }, {
+        "type": "checkbox",
+        "id": "video_loop",
+        "label": "Loop video",
+        "default": true
+      }, {
+        "type": "checkbox",
+        "id": "video_muted",
+        "label": "Mute video",
+        "default": true
+      }, {
+        "type": "checkbox",
+        "id": "show_video_controls",
+        "label": "Show video controls",
+        "default": false
+      }, {
+        "type": "header",
+        "content": "Content"
+      }, {
+        "type": "text",
+        "id": "eyebrow",
+        "label": "Eyebrow",
+        "default": "Collection spotlight"
+      }, {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "VIP MaxPlus"
+      }, {
+        "type": "richtext",
+        "id": "description",
+        "label": "Description",
+        "default": "<p>Made to fit every big deal.</p>"
+      }, {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button label",
+        "default": "Starting at Rs 6999"
+      }, {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link"
+      }, {
+        "type": "select",
+        "id": "content_horizontal",
+        "label": "Horizontal content position",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          }, {
+            "value": "center",
+            "label": "Center"
+          }, {
+            "value": "right",
+            "label": "Right"
+          }
+        ],
+        "default": "center"
+      }, {
+        "type": "select",
+        "id": "content_vertical",
+        "label": "Vertical content position",
+        "options": [
+          {
+            "value": "top",
+            "label": "Top"
+          }, {
+            "value": "center",
+            "label": "Center"
+          }, {
+            "value": "bottom",
+            "label": "Bottom"
+          }
+        ],
+        "default": "bottom"
+      }, {
+        "type": "range",
+        "id": "content_max_width",
+        "label": "Content max width",
+        "min": 24,
+        "max": 80,
+        "step": 1,
+        "unit": "rem",
+        "default": 56
+      }, {
+        "type": "range",
+        "id": "height_desktop",
+        "label": "Desktop height",
+        "min": 320,
+        "max": 1000,
+        "step": 10,
+        "unit": "px",
+        "default": 640
+      }, {
+        "type": "range",
+        "id": "height_mobile",
+        "label": "Mobile height",
+        "min": 220,
+        "max": 800,
+        "step": 10,
+        "unit": "px",
+        "default": 420
+      }, {
+        "type": "range",
+        "id": "padding_x",
+        "label": "Content horizontal padding",
+        "min": 0,
+        "max": 120,
+        "step": 4,
+        "unit": "px",
+        "default": 40
+      }, {
+        "type": "range",
+        "id": "padding_y",
+        "label": "Content vertical padding",
+        "min": 0,
+        "max": 160,
+        "step": 4,
+        "unit": "px",
+        "default": 48
+      }, {
+        "type": "header",
+        "content": "Colors"
+      }, {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text color",
+        "default": "#ffffff"
+      }, {
+        "type": "color",
+        "id": "overlay_color",
+        "label": "Overlay color",
+        "default": "#000000"
+      }, {
+        "type": "range",
+        "id": "overlay_opacity",
+        "label": "Overlay opacity",
+        "min": 0,
+        "max": 80,
+        "step": 5,
+        "unit": "%",
+        "default": 20
+      }, {
+        "type": "color",
+        "id": "button_text_color",
+        "label": "Button text color",
+        "default": "#ffffff"
+      }, {
+        "type": "color",
+        "id": "button_border_color",
+        "label": "Button border color",
+        "default": "#ffffff"
+      }, {
+        "type": "color",
+        "id": "button_background_color",
+        "label": "Button background color",
+        "default": "rgba(255,255,255,0)"
+      }
+    ],
+    "presets": [
+      {
+        "name": "UI Hero Banner"
+      }
+    ]
+  }
+{% endschema %}

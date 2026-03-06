@@ -1,0 +1,298 @@
+@use "../../abstracts/mixins-media" as *;
+@use "../../typography/fontVariables" as *;
+
+.ui-hero-banner {
+  --ui-hero-min-height: 640px;
+  --ui-hero-min-height-mobile: 420px;
+  --ui-hero-overlay-color: #000000;
+  --ui-hero-overlay-opacity: 0.2;
+  --ui-hero-content-max-width: 56rem;
+  --ui-hero-content-padding-y: 4.8rem;
+  --ui-hero-content-padding-x: 4rem;
+  --ui-hero-text-color: #ffffff;
+  --ui-hero-button-bg: transparent;
+  --ui-hero-button-border: rgba(255, 255, 255, 0.55);
+  --ui-hero-button-color: #ffffff;
+
+  position: relative;
+  isolation: isolate;
+  display: block;
+  min-height: var(--ui-hero-min-height);
+  overflow: hidden;
+
+  @include media("<md") {
+    min-height: var(--ui-hero-min-height-mobile);
+  }
+
+  &__media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  &__media-item {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  &__media--mobile {
+    display: none;
+
+    @include media("<md") {
+      display: block;
+    }
+  }
+
+  &__media--desktop {
+    @include media("<md") {
+      display: none;
+    }
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: var(--ui-hero-overlay-color);
+    opacity: var(--ui-hero-overlay-opacity);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  &__inner {
+    position: relative;
+    z-index: 2;
+    min-height: inherit;
+    padding: var(--ui-hero-content-padding-y) var(--ui-hero-content-padding-x);
+    display: flex;
+
+    @include media("<md") {
+      padding: 3.2rem 2rem;
+    }
+  }
+
+  &__content {
+    width: min(100%, var(--ui-hero-content-max-width));
+    color: var(--ui-hero-text-color);
+  }
+
+  &__eyebrow {
+    margin: 0 0 0.8rem;
+    font-size: 1.4rem;
+    line-height: 1.2;
+    opacity: 0.9;
+  }
+
+  &__title {
+    margin: 0;
+    font-family: $recoletaSemiBold;
+    font-size: clamp(3rem, 4.5vw, 5.4rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+
+  &__desc {
+    margin: 1.2rem 0 0;
+    font-size: clamp(1.4rem, 1.6vw, 1.8rem);
+    line-height: 1.5;
+    max-width: 48ch;
+    opacity: 0.95;
+  }
+
+  &__actions {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  &__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 4.4rem;
+    padding: 0.9rem 1.6rem;
+    border: 1px solid var(--ui-hero-button-border);
+    background: var(--ui-hero-button-bg);
+    color: var(--ui-hero-button-color);
+    font-size: 1.4rem;
+    line-height: 1;
+    text-decoration: none;
+    border-radius: 999px;
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+
+    &:hover,
+    &:focus-visible {
+      background: #ffffff;
+      color: #111111;
+      border-color: #ffffff;
+    }
+  }
+
+  &--v-top {
+    .ui-hero-banner__inner {
+      align-items: flex-start;
+    }
+  }
+
+  &--v-center {
+    .ui-hero-banner__inner {
+      align-items: center;
+    }
+  }
+
+  &--v-bottom {
+    .ui-hero-banner__inner {
+      align-items: flex-end;
+    }
+  }
+
+  &--h-left {
+    .ui-hero-banner__inner {
+      justify-content: flex-start;
+    }
+
+    .ui-hero-banner__content {
+      text-align: left;
+    }
+  }
+
+  &--h-center {
+    .ui-hero-banner__inner {
+      justify-content: center;
+    }
+
+    .ui-hero-banner__content {
+      text-align: center;
+    }
+  }
+
+  &--h-right {
+    .ui-hero-banner__inner {
+      justify-content: flex-end;
+    }
+
+    .ui-hero-banner__content {
+      text-align: right;
+      margin-left: auto;
+    }
+  }
+}
+
+/* Legacy compatibility: existing image-banner section */
+.banner {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  z-index: auto;
+  isolation: isolate;
+  min-height: calc(770px - var(--h-header));
+
+  @include media("<md") {
+    min-height: calc(360px - var(--h-header));
+    padding-top: 380px;
+  }
+
+  &__image--mobile {
+    display: none !important;
+  }
+
+  @include media("<md") {
+    &__image--desktop {
+      display: none !important;
+    }
+
+    &__image--mobile {
+      display: block !important;
+    }
+  }
+
+  &__media {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: transparent;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__content {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+
+    @include media("<md") {
+      top: 60%;
+      left: calc(50% - 14px);
+    }
+
+    .banner__icon {
+      position: absolute;
+      top: 100px;
+      left: -20px;
+
+      @include media("<md") {
+        top: 50px;
+        left: -10px;
+      }
+
+      img {
+        width: 190.35px;
+        height: 166.05px;
+        flex-shrink: 0;
+
+        @include media("<md") {
+          height: auto;
+          width: 98px;
+        }
+      }
+    }
+  }
+
+  &__heading {
+    color: var(--c-text-primary-dark);
+    font-family: $recoletaSemiBold;
+    font-size: 97.2px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.1;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+
+    @include media("<md") {
+      font-size: 48px;
+      line-height: 1.2;
+    }
+
+    &-copy1 {
+      position: relative;
+    }
+
+    &-copy2 {
+      left: 70px;
+      position: relative;
+
+      @include media("<md") {
+        left: 40px;
+      }
+    }
+
+    &-copy3 {
+      position: relative;
+    }
+
+    span {
+      display: flex;
+      width: max-content;
+    }
+  }
+}
