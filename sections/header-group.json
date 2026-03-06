@@ -36,6 +36,38 @@
         "enable_language_selector": false
       }
     },
+    "ui_brand_strip_VwtHJh": {
+      "type": "ui-brand-strip",
+      "blocks": {
+        "brand_HWndnD": {
+          "type": "brand",
+          "settings": {
+            "label": "VIP",
+            "link": "shopify://collections"
+          }
+        },
+        "brand_fPFdJX": {
+          "type": "brand",
+          "settings": {
+            "label": "Skybags",
+            "link": "shopify://collections"
+          }
+        }
+      },
+      "block_order": [
+        "brand_HWndnD",
+        "brand_fPFdJX"
+      ],
+      "name": "UI Brand Strip",
+      "settings": {
+        "background_color": "#8B0000",
+        "text_color": "#C8B9AE",
+        "font_size": 13,
+        "item_gap": 20,
+        "padding_top": 12,
+        "padding_bottom": 12
+      }
+    },
     "header": {
       "type": "header",
       "settings": {
@@ -58,6 +90,7 @@
   },
   "order": [
     "announcement-bar",
+    "ui_brand_strip_VwtHJh",
     "header"
   ]
 }
