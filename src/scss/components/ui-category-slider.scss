@@ -1,4 +1,12 @@
+@use "../typography/fontVariables" as *;
+@use "../abstracts" as *;
+
 .ui-category-slider {
+
+  .page-width {
+    margin: 0 auto;
+    padding-inline: 0;
+  }
 
   padding: 40px 0;
 
@@ -18,7 +26,7 @@
 
   &__list {
     display: flex;
-    gap: 16px;
+    gap: 1px;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
@@ -70,6 +78,15 @@
     justify-content: center;
     margin-top: 20px;
     gap: 10px;
+
+    .slider-btn {
+      display: block;
+
+      @include media("<sm") {
+        display: none;
+      }
+    }
+
   }
 
 }
@@ -176,7 +193,7 @@
   .ui-category-slider {
 
     &__list {
-      gap: 12px;
+      gap: 1px;
     }
 
     &__item {
@@ -190,18 +207,20 @@
 
 /* slider-interface must-haves */
 slider-interface {
-	[slider-card-list] {
-		scroll-snap-type: x mandatory;
-		scroll-padding: var(--adjusted-container-padding);
-		// @include media("<md") {
-		// 	//overscroll-behavior: none;//this property seems to be blocking any scroll interaction vertically. If i try to scroll vertically over the slider cards, it doesnt work
-		// }
-	}
-	[slider-card] {
-		scroll-snap-align: start;
-	}
-	[slider-prev][disabled],
-	[slider-next][disabled] {
-		pointer-events: none;
-	}
+  [slider-card-list] {
+    scroll-snap-type: x mandatory;
+    scroll-padding: var(--adjusted-container-padding);
+    // @include media("<md") {
+    // 	//overscroll-behavior: none;//this property seems to be blocking any scroll interaction vertically. If i try to scroll vertically over the slider cards, it doesnt work
+    // }
+  }
+
+  [slider-card] {
+    scroll-snap-align: start;
+  }
+
+  [slider-prev][disabled],
+  [slider-next][disabled] {
+    pointer-events: none;
+  }
 }

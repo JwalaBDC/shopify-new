@@ -1,4 +1,5 @@
-// @use "@abstracts" as *;
+@use "../abstracts" as *;
+
 .m-slider-scroll-indicator {
 	&__track {
 		position: relative;
@@ -6,12 +7,15 @@
 		background-color: var(--c-border-gray);
 		border-radius: 50px;
 		width: 240px;
-		// @include media("<sm") {
-		// 	width: 140px;
-		// }
-		// @include media(">=sm", "<md") {
-		// 	width: 240px;
-		// }
+		display: none;
+		@include media("<sm") {
+			width: 140px;
+			display: block;
+		}
+		@include media(">=sm", "<md") {
+			width: 240px;
+			display: block;
+		}
 	}
 
 	&__thumb {

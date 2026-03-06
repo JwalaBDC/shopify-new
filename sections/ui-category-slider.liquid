@@ -1,4 +1,4 @@
-{{ 'css/components/ui-category-slider.css' | asset_url | stylesheet_tag }}
+{% comment %} {{ 'css/components/ui-category-slider.css' | asset_url | stylesheet_tag }} {% endcomment %}
 
 <section class="ui-category-slider">
   <div class="page-width">
@@ -40,26 +40,10 @@
       </div>
 
       <div class="ui-category-slider__nav">
-        <div class="m-slider-scroll-indicator">
-          <div
-            x-slider-scroll-indicator-track
-            slider-scroll-indicator-track
-            class="m-slider-scroll-indicator__track">
-            <div
-              x-slider-scroll-indicator-thumb
-              slider-scroll-indicator-thumb
-              class="m-slider-scroll-indicator__thumb"></div>
-          </div>
-        </div>
-
-        <button slider-prev class="slider-btn slider-btn--prev">
-          ‹
-        </button>
-
-        <button slider-next class="slider-btn slider-btn--next">
-          ›
-        </button>
-
+        {%- liquid
+          render 'm-slider-scroll-indicator' -%}
+        {%- liquid
+          render 'm-slider-btn' -%}
       </div>
 
     </slider-interface>
