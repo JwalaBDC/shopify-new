@@ -76,8 +76,8 @@
     font-size: 14px;
     line-height: 1.4;
     color: #222;
-    margin-bottom: 6px;
-    margin-block-start: var(--space-2xs);
+    // margin-bottom: 6px;
+    padding: var(--space-2xs);
   }
 
   &__title a {

@@ -51,8 +51,8 @@
     .ui-category-slider__item {
       width: calc(100% / 6 - 1px);
 
-      .ui-product-card__image {
-        aspect-ratio: 209/261;
+      @include media("<md") {
+        width: 237.7656px !important;
       }
     }
 

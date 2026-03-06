@@ -241,7 +241,139 @@
       "name": "UI Category Slider",
       "settings": {
         "title": "Shop By Category",
+        "cards_per_row": "6"
+      }
+    },
+    "ui_category_slider_RELtrm": {
+      "type": "ui-category-slider",
+      "blocks": {
+        "category_PFhcdM": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/Frame_1171282195.png",
+            "title": "Cabin",
+            "link": ""
+          }
+        },
+        "category_yKhwR9": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/Frame_1171282195_1.png",
+            "title": "Check-in",
+            "link": ""
+          }
+        },
+        "category_XtL8pt": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/Frame_1171282195_2.png",
+            "title": "Laptop bags",
+            "link": ""
+          }
+        },
+        "category_8wnCcn": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/Frame_1171282195_3.png",
+            "title": "Backpacks",
+            "link": ""
+          }
+        },
+        "category_PfnxQi": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/Frame_1171282195_4.png",
+            "title": "Duffle bags",
+            "link": ""
+          }
+        },
+        "category_n4GDPb": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/Frame_1171282195_5.png",
+            "title": "Sets",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_PFhcdM",
+        "category_yKhwR9",
+        "category_XtL8pt",
+        "category_8wnCcn",
+        "category_PfnxQi",
+        "category_n4GDPb"
+      ],
+      "name": "UI Category Slider",
+      "settings": {
+        "title": "Shop By Category",
         "cards_per_row": "4"
+      }
+    },
+    "ui_category_slider_9bGmXR": {
+      "type": "ui-category-slider",
+      "blocks": {
+        "category_j8HYFj": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/Frame_1171282195.png",
+            "title": "Cabin",
+            "link": ""
+          }
+        },
+        "category_4B6n6t": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/Frame_1171282195_1.png",
+            "title": "Check-in",
+            "link": ""
+          }
+        },
+        "category_TFrB9N": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/Frame_1171282195_2.png",
+            "title": "Laptop bags",
+            "link": ""
+          }
+        },
+        "category_gttQYi": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/Frame_1171282195_3.png",
+            "title": "Backpacks",
+            "link": ""
+          }
+        },
+        "category_HBKjqH": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/Frame_1171282195_4.png",
+            "title": "Duffle bags",
+            "link": ""
+          }
+        },
+        "category_CUpiEJ": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/Frame_1171282195_5.png",
+            "title": "Sets",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_j8HYFj",
+        "category_4B6n6t",
+        "category_TFrB9N",
+        "category_gttQYi",
+        "category_HBKjqH",
+        "category_CUpiEJ"
+      ],
+      "name": "UI Category Slider",
+      "settings": {
+        "title": "Shop By Category",
+        "cards_per_row": "3"
       }
     }
   },
@@ -250,6 +382,8 @@
     "featured_collection_NBGfpB",
     "featured_collection",
     "image_with_text_4XNtBV",
-    "ui_category_slider_pQtpgb"
+    "ui_category_slider_pQtpgb",
+    "ui_category_slider_RELtrm",
+    "ui_category_slider_9bGmXR"
   ]
 }
