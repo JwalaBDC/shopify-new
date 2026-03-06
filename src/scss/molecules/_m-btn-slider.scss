@@ -1,0 +1,144 @@
+@use "../abstracts" as *;
+@use "../motion/abstracts" as motion;
+
+/*
+   Molecule: m-btn-slider
+   Animation Specifications:
+   Icon Transition - 300ms, standard-decelerate
+*/
+/* keyframes */
+@keyframes m-btn-slider-prev-hover-keyframes {
+	0% {
+		transform: none;
+		opacity: 1;
+	}
+
+	50% {
+		transform: translateX(-6px);
+		opacity: 0;
+	}
+
+	51% {
+		transform: translateX(10px);
+		opacity: 0;
+	}
+
+	100% {
+		transform: none;
+		opacity: 1;
+	}
+}
+
+@keyframes m-btn-slider-next-hover-keyframes {
+	0% {
+		transform: none;
+		opacity: 1;
+	}
+
+	50% {
+		transform: translateX(6px);
+		opacity: 0;
+	}
+
+	51% {
+		transform: translateX(-10px);
+		opacity: 0;
+	}
+
+	100% {
+		transform: none;
+		opacity: 1;
+	}
+}
+
+/* mixins */
+@mixin m-btn-slider-prev-hover-state {
+	.m-btn-slider__icon {
+		animation-name: m-btn-slider-prev-hover-keyframes;
+	}
+}
+
+@mixin m-btn-slider-next-hover-state {
+	.m-btn-slider__icon {
+		animation-name: m-btn-slider-next-hover-keyframes;
+	}
+}
+
+@mixin m-btn-slider-disabled-state {
+	pointer-events: unset !important;
+	user-select: none;
+	opacity: 0.5;
+}
+
+/* styles */
+.m-btn-slider {
+	--m-btn-slider-motion-duration: 300ms;
+	--m-btn-slider-motion-easing: cubic-bezier(0, 0, 0, 1);
+	flex-shrink: 0;
+	width: 48px;
+	height: 44px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 6px;
+	border: 2px solid #fff;
+	box-shadow: 0px 0px 4px #D4C3C3;
+	background: linear-gradient(266deg, #f0f0f0, #c4c3c3);
+	// border: 1px solid rgba(0, 0, 0, 0.08);
+	// background: linear-gradient(145deg,
+	// 		#cfcaca,
+	// 		#e6e6e6);
+
+	// box-shadow:
+	// 	inset 0 2px 4px rgba(255, 255, 255, 0.6),
+	// 	inset 0 -2px 4px rgba(0, 0, 0, 0.08);
+
+	&--prev {
+		@include motion.button-hover-transition() {
+			@include m-btn-slider-prev-hover-state;
+		}
+	}
+
+	&--next {
+		@include motion.button-hover-transition() {
+			@include m-btn-slider-next-hover-state;
+		}
+	}
+
+	&[disabled],
+	&.is-disabled {
+		@include m-btn-slider-disabled-state;
+	}
+
+	@include media("<md") {
+		width: 28px;
+		height: 28px;
+	}
+
+	&__icon {
+		// path {
+		// 	fill: #5c5c64;
+		// }
+		animation-duration: var(--m-btn-slider-motion-duration);
+		animation-timing-function: var(--m-btn-slider-motion-easing);
+		animation-fill-mode: forwards;
+		line-height: 0;
+
+		@include media("<md") {
+			width: 14px;
+			height: 14px;
+		}
+	}
+}
+
+.using-touch {
+	.m-btn-slider {
+		touch-action: manipulation; //prevents double-tap zoom
+		-ms-touch-action: manipulation;
+	}
+
+	.m-btn-slider.is-pressed-state-blocked {
+		color: var(--c-text-primary) !important;
+		border-color: var(--c-border-gray) !important;
+	}
+}

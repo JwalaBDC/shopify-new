@@ -2,6 +2,7 @@
 @use "../abstracts" as *;
 
 .ui-category-slider {
+  position: relative;
 
   .page-width {
     margin: 0 auto;
@@ -48,7 +49,11 @@
   &--6 {
 
     .ui-category-slider__item {
-      width: calc(100% / 6 - 14px);
+      width: calc(100% / 6 - 1px);
+
+      .ui-product-card__image {
+        aspect-ratio: 209/261;
+      }
     }
 
   }
@@ -56,7 +61,11 @@
   &--4 {
 
     .ui-category-slider__item {
-      width: calc(100% / 4 - 12px);
+      width: calc(100% / 4 - 1px);
+
+      @include media("<md") {
+        width: 144px !important;
+      }
     }
 
   }
@@ -75,12 +84,37 @@
 
   &__nav {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     margin-top: 20px;
     gap: 10px;
 
+
+    .m-slider-scroll-indicator {
+      display: none !important;
+      margin-inline: auto;
+
+      @include media("<sm") {
+        display: flex !important;
+      }
+    }
+
     .slider-btn {
-      display: block;
+      display: flex;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+
+      &--prev {
+        left: var(--adjusted-container-padding);
+      }
+
+      &--next {
+        right: var(--adjusted-container-padding);
+      }
+
+      @include media("<sm") {
+        display: none;
+      }
 
       @include media("<sm") {
         display: none;
@@ -135,34 +169,6 @@
 
 }
 
-/* ======================
-   Slider Buttons
-====================== */
-
-.slider-btn {
-
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: 1px solid #ddd;
-  background: white;
-  cursor: pointer;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  transition: all .2s ease;
-
-  &:hover {
-    background: #f5f5f5;
-  }
-
-  &--prev {}
-
-  &--next {}
-
-}
 
 /* ======================
    Responsive

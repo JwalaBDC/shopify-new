@@ -15,7 +15,7 @@
 	--total-columns: 12;
 	--gutter-width: var(--space-3xs);
 	--container-width: var(--w-viewport);
-	--container-padding: var(--space-l);
+	--container-padding: var(--space-2xs);
 	/* container padding adjusted by half the gutter width */
 	--adjusted-container-padding: calc(var(--container-padding) - var(--gutter-width) / 2);
 	--adjusted-container-width: calc(var(--container-width) - 2 * var(--adjusted-container-padding));
