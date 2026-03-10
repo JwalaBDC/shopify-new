@@ -1,5 +1,5 @@
-@use "../../abstracts/mixins-media" as *;
-@use "../../typography/fontVariables" as *;
+@use "../typography/fontVariables" as *;
+@use "../abstracts" as *;
 
 .ui-hero-banner {
   --ui-hero-min-height: 640px;
@@ -87,6 +87,7 @@
   &__title {
     margin: 0;
     font-family: $recoletaSemiBold;
+    color: var(--ui-hero-text-color);
     font-size: clamp(3rem, 4.5vw, 5.4rem);
     line-height: 1.05;
     letter-spacing: -0.02em;
@@ -103,6 +104,7 @@
   &__actions {
     margin-top: 2rem;
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 1rem;
   }
