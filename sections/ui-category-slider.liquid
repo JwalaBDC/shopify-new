@@ -17,56 +17,54 @@
         >
           {% for block in section.blocks %}
             <li class="ui-category-slider__item" slider-card>
+              {% comment %}
+                {% liquid
+                assign category = block.settings.collection
+                assign selected_product = block.settings.product
+                assign preferred_source = block.settings.card_source | default: 'collection'
+                assign card_title = blank
+                assign card_link = blank
+                assign card_image = blank
+                if preferred_source == 'product' and selected_product
+                assign card_title = selected_product.title
+                assign card_link = selected_product.url
+                assign card_image = selected_product.featured_image
+                elsif preferred_source == 'collection' and category
+                assign card_title = category.title
+                assign card_link = category.url
+                assign card_image = category.image | default: category.products.first.featured_image
+                elsif selected_product
+                assign card_title = selected_product.title
+                assign card_link = selected_product.url
+                assign card_image = selected_product.featured_image
+                elsif category
+                assign card_title = category.title
+                assign card_link = category.url
+                assign card_image = category.image | default: category.products.first.featured_image
+                endif
+                %}
+              {% endcomment %}
 
               {% liquid
                 assign category = block.settings.collection
                 assign selected_product = block.settings.product
-                assign preferred_source = block.settings.card_source | default: 'collection'
-                assign product_tag_filter = block.settings.product_tag | default: 'featured-product'
+                assign preferred_source = block.settings.card_source
 
-                assign card_title = blank
-                assign card_link = blank
-                assign card_image = blank
-                assign resolved_product = nil
-
-                if preferred_source == 'product'
-                  if selected_product
-                    assign resolved_product = selected_product
-                  elsif category
-                    for product in category.products
-                      if product.tags contains product_tag_filter
-                        assign resolved_product = product
-                        break
-                      endif
-                    endfor
-
-                    if resolved_product == nil and category.products_count > 0
-                      assign resolved_product = category.products | first
-                    endif
-                  endif
-                endif
-
-                if resolved_product
-                  assign card_title = resolved_product.title
-                  assign card_link = resolved_product.url
-                  assign card_image = resolved_product.featured_image
-                elsif category
-                  assign card_title = category.title
-                  assign card_link = category.url
-                  assign card_image = category.image | default: category.products.first.featured_image
-                elsif selected_product
+                if preferred_source == 'product' and selected_product
                   assign card_title = selected_product.title
                   assign card_link = selected_product.url
                   assign card_image = selected_product.featured_image
+
+                elsif preferred_source == 'collection' and category
+                  assign collection_product = category.products.first
+                  assign card_title = collection_product.title
+                  assign card_link = collection_product.url
+                  assign card_image = collection_product.featured_image
                 endif
               %}
 
               {% if card_link and card_title %}
-                {% render 'ui-product-card',
- image: card_image,
- title: card_title,
- link: card_link
-                %}
+                {% render 'ui-product-card', image: card_image, title: card_title, link: card_link %}
               {% endif %}
             </li>
           {% endfor %}
@@ -147,13 +145,6 @@
           "id": "product",
           "label": "Select featured product",
           "info": "Overrides the category card when set"
-        },
-        {
-          "type": "text",
-          "id": "product_tag",
-          "label": "Auto-pick product tag",
-          "default": "featured-product",
-          "info": "Used when card source is product but no product is chosen"
         }
       ]
     }
