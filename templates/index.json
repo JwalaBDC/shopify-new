@@ -184,49 +184,49 @@
         "category_Wp8wTn": {
           "type": "category",
           "settings": {
-            "image": "shopify://shop_images/Frame_1171282195.png",
-            "title": "Cabin",
-            "link": ""
+            "card_source": "collection",
+            "collection": "",
+            "product": ""
           }
         },
         "category_CPwg7g": {
           "type": "category",
           "settings": {
-            "image": "shopify://shop_images/Frame_1171282195_1.png",
-            "title": "Check-in",
-            "link": ""
+            "card_source": "collection",
+            "collection": "",
+            "product": ""
           }
         },
         "category_bxnFpm": {
           "type": "category",
           "settings": {
-            "image": "shopify://shop_images/Frame_1171282195_2.png",
-            "title": "Laptop bags",
-            "link": ""
+            "card_source": "collection",
+            "collection": "",
+            "product": ""
           }
         },
         "category_CkJLtc": {
           "type": "category",
           "settings": {
-            "image": "shopify://shop_images/Frame_1171282195_3.png",
-            "title": "Backpacks",
-            "link": ""
+            "card_source": "collection",
+            "collection": "",
+            "product": ""
           }
         },
         "category_VjhgRc": {
           "type": "category",
           "settings": {
-            "image": "shopify://shop_images/Frame_1171282195_4.png",
-            "title": "Duffle bags",
-            "link": ""
+            "card_source": "collection",
+            "collection": "",
+            "product": ""
           }
         },
         "category_qitBfQ": {
           "type": "category",
           "settings": {
-            "image": "shopify://shop_images/Frame_1171282195_5.png",
-            "title": "Sets",
-            "link": ""
+            "card_source": "collection",
+            "collection": "",
+            "product": ""
           }
         }
       },
@@ -250,49 +250,49 @@
         "category_PFhcdM": {
           "type": "category",
           "settings": {
-            "image": "shopify://shop_images/Frame_1171282195.png",
-            "title": "Cabin",
-            "link": ""
+            "card_source": "collection",
+            "collection": "",
+            "product": ""
           }
         },
         "category_yKhwR9": {
           "type": "category",
           "settings": {
-            "image": "shopify://shop_images/Frame_1171282195_1.png",
-            "title": "Check-in",
-            "link": ""
+            "card_source": "collection",
+            "collection": "",
+            "product": ""
           }
         },
         "category_XtL8pt": {
           "type": "category",
           "settings": {
-            "image": "shopify://shop_images/Frame_1171282195_2.png",
-            "title": "Laptop bags",
-            "link": ""
+            "card_source": "collection",
+            "collection": "",
+            "product": ""
           }
         },
         "category_8wnCcn": {
           "type": "category",
           "settings": {
-            "image": "shopify://shop_images/Frame_1171282195_3.png",
-            "title": "Backpacks",
-            "link": ""
+            "card_source": "collection",
+            "collection": "",
+            "product": ""
           }
         },
         "category_PfnxQi": {
           "type": "category",
           "settings": {
-            "image": "shopify://shop_images/Frame_1171282195_4.png",
-            "title": "Duffle bags",
-            "link": ""
+            "card_source": "collection",
+            "collection": "",
+            "product": ""
           }
         },
         "category_n4GDPb": {
           "type": "category",
           "settings": {
-            "image": "shopify://shop_images/Frame_1171282195_5.png",
-            "title": "Sets",
-            "link": ""
+            "card_source": "collection",
+            "collection": "",
+            "product": ""
           }
         }
       },
@@ -313,62 +313,44 @@
     "ui_category_slider_9bGmXR": {
       "type": "ui-category-slider",
       "blocks": {
-        "category_j8HYFj": {
+        "category_TkxhHC": {
           "type": "category",
           "settings": {
-            "image": "shopify://shop_images/Frame_1171282195.png",
-            "title": "Cabin",
-            "link": ""
+            "card_source": "product",
+            "collection": "biscuits",
+            "product": "rusks-saffron-cardamom"
           }
         },
-        "category_4B6n6t": {
+        "category_LEnTX9": {
           "type": "category",
           "settings": {
-            "image": "shopify://shop_images/Frame_1171282195_1.png",
-            "title": "Check-in",
-            "link": ""
+            "card_source": "product",
+            "collection": "biscuits",
+            "product": "rusks-fig-anise"
           }
         },
-        "category_TFrB9N": {
+        "category_9map8F": {
           "type": "category",
           "settings": {
-            "image": "shopify://shop_images/Frame_1171282195_2.png",
-            "title": "Laptop bags",
-            "link": ""
+            "card_source": "product",
+            "collection": "biscuits",
+            "product": "biscuits-almond-butter"
           }
         },
-        "category_gttQYi": {
+        "category_wXfWCg": {
           "type": "category",
           "settings": {
-            "image": "shopify://shop_images/Frame_1171282195_3.png",
-            "title": "Backpacks",
-            "link": ""
-          }
-        },
-        "category_HBKjqH": {
-          "type": "category",
-          "settings": {
-            "image": "shopify://shop_images/Frame_1171282195_4.png",
-            "title": "Duffle bags",
-            "link": ""
-          }
-        },
-        "category_CUpiEJ": {
-          "type": "category",
-          "settings": {
-            "image": "shopify://shop_images/Frame_1171282195_5.png",
-            "title": "Sets",
-            "link": ""
+            "card_source": "product",
+            "collection": "biscuits",
+            "product": "biscuits-ancient-grains"
           }
         }
       },
       "block_order": [
-        "category_j8HYFj",
-        "category_4B6n6t",
-        "category_TFrB9N",
-        "category_gttQYi",
-        "category_HBKjqH",
-        "category_CUpiEJ"
+        "category_TkxhHC",
+        "category_LEnTX9",
+        "category_9map8F",
+        "category_wXfWCg"
       ],
       "name": "UI Category Slider",
       "settings": {
@@ -395,16 +377,12 @@
         "content_horizontal": "center",
         "content_vertical": "bottom",
         "content_max_width": 56,
-        "height_desktop": 640,
-        "height_mobile": 420,
-        "padding_x": 40,
-        "padding_y": 48,
         "text_color": "#ffffff",
         "overlay_color": "#000000",
         "overlay_opacity": 20,
         "button_text_color": "#ffffff",
         "button_border_color": "#ffffff",
-        "button_background_color": "rgba(255,255,255,0)"
+        "button_background_color": "rgba(0,0,0,0)"
       }
     }
   },
