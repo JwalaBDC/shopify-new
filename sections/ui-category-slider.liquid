@@ -22,14 +22,24 @@
 
             <li class="ui-category-slider__item" slider-card>
 
-              {% render 'ui-product-card'
-                ,
- image: block.settings.image
-                ,
- title: block.settings.title
-                ,
- link: block.settings.link
-              %}
+              {% comment %} {% render 'ui-product-card'
+                                                ,
+                                 image: block.settings.image
+                                                ,
+                                 title: block.settings.title
+                                                ,
+                                 link: block.settings.link
+                                          %} {% endcomment %}
+
+              {% assign category = block.settings.collection %}
+
+              {% if category %}
+                {% render 'ui-product-card',
+ image: category.image | default: category.products.first.featured_image,
+ title: category.title,
+ link: category.url
+                %}
+              {% endif %}
 
             </li>
 
@@ -60,7 +70,8 @@
         "id": "title",
         "label": "Heading",
         "default": "Shop By Category"
-      }, {
+      },
+      {
         "type": "select",
         "id": "cards_per_row",
         "label": "Cards per row",
@@ -68,10 +79,12 @@
           {
             "value": "6",
             "label": "6 Cards"
-          }, {
+          },
+          {
             "value": "4",
             "label": "4 Cards"
-          }, {
+          },
+          {
             "value": "3",
             "label": "3 Cards"
           }
@@ -88,11 +101,13 @@
             "type": "image_picker",
             "id": "image",
             "label": "Category Image"
-          }, {
+          },
+          {
             "type": "text",
             "id": "title",
             "label": "Category Title"
-          }, {
+          },
+          {
             "type": "url",
             "id": "link",
             "label": "Category Link"
