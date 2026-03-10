@@ -173,13 +173,9 @@
 
 {%- style -%}
   #ui-hero-banner-{{ section.id }} {
-    --ui-hero-min-height: {{ section.settings.height_desktop }}px;
-    --ui-hero-min-height-mobile: {{ section.settings.height_mobile }}px;
     --ui-hero-overlay-color: {{ section.settings.overlay_color }};
     --ui-hero-overlay-opacity: {{ desktop_overlay_opacity }};
     --ui-hero-content-max-width: {{ section.settings.content_max_width }}rem;
-    --ui-hero-content-padding-y: {{ section.settings.padding_y }}px;
-    --ui-hero-content-padding-x: {{ section.settings.padding_x }}px;
     --ui-hero-text-color: {{ section.settings.text_color }};
     --ui-hero-button-border: {{ section.settings.button_border_color }};
     --ui-hero-button-color: {{ section.settings.button_text_color }};
@@ -346,46 +342,6 @@
         "step": 1,
         "unit": "rem",
         "default": 56
-      },
-      {
-        "type": "range",
-        "id": "height_desktop",
-        "label": "Desktop height",
-        "min": 320,
-        "max": 1000,
-        "step": 10,
-        "unit": "px",
-        "default": 640
-      },
-      {
-        "type": "range",
-        "id": "height_mobile",
-        "label": "Mobile height",
-        "min": 220,
-        "max": 800,
-        "step": 10,
-        "unit": "px",
-        "default": 420
-      },
-      {
-        "type": "range",
-        "id": "padding_x",
-        "label": "Content horizontal padding",
-        "min": 0,
-        "max": 120,
-        "step": 4,
-        "unit": "px",
-        "default": 40
-      },
-      {
-        "type": "range",
-        "id": "padding_y",
-        "label": "Content vertical padding",
-        "min": 0,
-        "max": 160,
-        "step": 4,
-        "unit": "px",
-        "default": 48
       },
       {
         "type": "header",
