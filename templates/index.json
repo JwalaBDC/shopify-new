@@ -181,56 +181,65 @@
     "ui_category_slider_pQtpgb": {
       "type": "ui-category-slider",
       "blocks": {
+        "category_RYqHEz": {
+          "type": "category",
+          "settings": {
+            "card_source": "product",
+            "collection": "biscuits",
+            "product": "biscuits-almond-butter"
+          }
+        },
         "category_Wp8wTn": {
           "type": "category",
           "settings": {
-            "card_source": "collection",
-            "collection": "",
-            "product": ""
+            "card_source": "product",
+            "collection": "rusks",
+            "product": "biscuits-ancient-grains"
           }
         },
         "category_CPwg7g": {
           "type": "category",
           "settings": {
-            "card_source": "collection",
-            "collection": "",
-            "product": ""
+            "card_source": "product",
+            "collection": "rusks",
+            "product": "rusks-vanilla-bean"
           }
         },
         "category_bxnFpm": {
           "type": "category",
           "settings": {
-            "card_source": "collection",
-            "collection": "",
-            "product": ""
+            "card_source": "product",
+            "collection": "rusks",
+            "product": "rusks-fig-anise"
           }
         },
         "category_CkJLtc": {
           "type": "category",
           "settings": {
-            "card_source": "collection",
-            "collection": "",
-            "product": ""
+            "card_source": "product",
+            "collection": "rusks",
+            "product": "rusks-saffron-cardamom"
           }
         },
         "category_VjhgRc": {
           "type": "category",
           "settings": {
-            "card_source": "collection",
-            "collection": "",
-            "product": ""
+            "card_source": "product",
+            "collection": "rusks",
+            "product": "biscuits-salted-caramel"
           }
         },
         "category_qitBfQ": {
           "type": "category",
           "settings": {
-            "card_source": "collection",
-            "collection": "",
-            "product": ""
+            "card_source": "product",
+            "collection": "rusks",
+            "product": "rusks-spiced-pumpkin"
           }
         }
       },
       "block_order": [
+        "category_RYqHEz",
         "category_Wp8wTn",
         "category_CPwg7g",
         "category_bxnFpm",
@@ -250,49 +259,49 @@
         "category_PFhcdM": {
           "type": "category",
           "settings": {
-            "card_source": "collection",
-            "collection": "",
-            "product": ""
+            "card_source": "product",
+            "collection": "biscuits",
+            "product": "biscuits-almond-butter"
           }
         },
         "category_yKhwR9": {
           "type": "category",
           "settings": {
-            "card_source": "collection",
-            "collection": "",
-            "product": ""
+            "card_source": "product",
+            "collection": "biscuits",
+            "product": "biscuits-ancient-grains"
           }
         },
         "category_XtL8pt": {
           "type": "category",
           "settings": {
-            "card_source": "collection",
-            "collection": "",
-            "product": ""
+            "card_source": "product",
+            "collection": "biscuits",
+            "product": "biscuits-chocolate-hazelnut"
           }
         },
         "category_8wnCcn": {
           "type": "category",
           "settings": {
-            "card_source": "collection",
-            "collection": "",
-            "product": ""
+            "card_source": "product",
+            "collection": "biscuits",
+            "product": "rusks-mediterranean-herb"
           }
         },
         "category_PfnxQi": {
           "type": "category",
           "settings": {
-            "card_source": "collection",
-            "collection": "",
-            "product": ""
+            "card_source": "product",
+            "collection": "biscuits",
+            "product": "biscuits-dark-chocolate"
           }
         },
         "category_n4GDPb": {
           "type": "category",
           "settings": {
-            "card_source": "collection",
-            "collection": "",
-            "product": ""
+            "card_source": "product",
+            "collection": "biscuits",
+            "product": "rusks-mediterranean-herb"
           }
         }
       },
@@ -313,6 +322,14 @@
     "ui_category_slider_9bGmXR": {
       "type": "ui-category-slider",
       "blocks": {
+        "category_zFYcaf": {
+          "type": "category",
+          "settings": {
+            "card_source": "product",
+            "collection": "rusks",
+            "product": "rusks-spiced-pumpkin"
+          }
+        },
         "category_TkxhHC": {
           "type": "category",
           "settings": {
@@ -347,6 +364,7 @@
         }
       },
       "block_order": [
+        "category_zFYcaf",
         "category_TkxhHC",
         "category_LEnTX9",
         "category_9map8F",
