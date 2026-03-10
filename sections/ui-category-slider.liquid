@@ -56,10 +56,14 @@
                   assign card_image = selected_product.featured_image
 
                 elsif preferred_source == 'collection' and category
-                  assign collection_product = category.products.first
-                  assign card_title = collection_product.title
-                  assign card_link = collection_product.url
-                  assign card_image = collection_product.featured_image
+                  for product in category.products
+                    if product.tags contains 'featured-product'
+                      assign card_title = product.title
+                      assign card_link = product.url
+                      assign card_image = product.featured_image
+                      break
+                    endif
+                  endfor
                 endif
               %}
 
