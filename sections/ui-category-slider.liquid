@@ -17,42 +17,49 @@
           {% for block in section.blocks %}
             <li class="ui-category-slider__item" slider-card>
               {% comment %} 
-                {% liquid 
-                assign category = block.settings.collection 
-                assign selected_product = block.settings.product 
-                assign preferred_source = block.settings.card_source | default: 'collection' 
-                assign card_title = blank 
-                assign card_link = blank 
-                assign card_image = blank 
-                if preferred_source == 'product' and selected_product 
-                assign card_title = selected_product.title 
-                assign card_link = selected_product.url 
-                assign card_image = selected_product.featured_image 
-                elsif preferred_source == 'collection' and category 
-                assign card_title = category.title 
-                assign card_link = category.url 
-                assign card_image = category.image | default: category.products.first.featured_image 
-                elsif selected_product 
-                assign card_title = selected_product.title 
-                assign card_link = selected_product.url 
-                assign card_image = selected_product.featured_image 
-                elsif category 
-                assign card_title = category.title 
-                assign card_link = category.url 
-                assign card_image = category.image | default: category.products.first.featured_image 
-                endif
-                %} 
-              {% endcomment %}
+                                                {% liquid 
+                                                assign category = block.settings.collection 
+                                                assign selected_product = block.settings.product 
+                                                assign preferred_source = block.settings.card_source | default: 'collection' 
+                                                assign card_title = blank 
+                                                assign card_link = blank 
+                                                assign card_image = blank 
+                                                if preferred_source == 'product' and selected_product 
+                                                assign card_title = selected_product.title 
+                                                assign card_link = selected_product.url 
+                                                assign card_image = selected_product.featured_image 
+                                                elsif preferred_source == 'collection' and category 
+                                                assign card_title = category.title 
+                                                assign card_link = category.url 
+                                                assign card_image = category.image | default: category.products.first.featured_image 
+                                                elsif selected_product 
+                                                assign card_title = selected_product.title 
+                                                assign card_link = selected_product.url 
+                                                assign card_image = selected_product.featured_image 
+                                                elsif category 
+                                                assign card_title = category.title 
+                                                assign card_link = category.url 
+                                                assign card_image = category.image | default: category.products.first.featured_image 
+                                                endif
+                                                %} 
+                                          {% endcomment %}
 
               {% liquid
                 assign category = block.settings.collection
                 assign selected_product = block.settings.product
+                assign preferred_source = block.settings.card_source
 
-                assign card_title = blank
-                assign card_link = blank
-                assign card_image = blank
+                if preferred_source == 'product' and selected_product
+                  assign card_title = selected_product.title
+                  assign card_link = selected_product.url
+                  assign card_image = selected_product.featured_image
 
-                if selected_product
+                elsif preferred_source == 'collection' and category
+                  assign card_title = category.title
+                  assign card_link = category.url
+                  assign card_image = category.image | default: category.products.first.featured_image
+
+                elsif selected_product
                   assign card_title = selected_product.title
                   assign card_link = selected_product.url
                   assign card_image = selected_product.featured_image
