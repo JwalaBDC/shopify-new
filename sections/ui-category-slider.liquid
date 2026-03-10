@@ -2,7 +2,6 @@
 
 <section class="ui-category-slider">
   <div class="page-width">
-
     {% if section.settings.title != blank %}
       <div class="ui-category-slider__header">
         <h2>{{ section.settings.title }}</h2>
@@ -10,39 +9,54 @@
     {% endif %}
 
     <slider-interface>
-
       <div class="ui-category-slider__wrapper">
-
         <ul
           class="ui-category-slider__list ui-category-slider--{{ section.settings.cards_per_row }}"
           slider-card-list
           data-cards-per-slide="{{ section.settings.cards_per_row }}">
-
           {% for block in section.blocks %}
-
             <li class="ui-category-slider__item" slider-card>
+              {% comment %} 
+                {% liquid 
+                assign category = block.settings.collection 
+                assign selected_product = block.settings.product 
+                assign preferred_source = block.settings.card_source | default: 'collection' 
+                assign card_title = blank 
+                assign card_link = blank 
+                assign card_image = blank 
+                if preferred_source == 'product' and selected_product 
+                assign card_title = selected_product.title 
+                assign card_link = selected_product.url 
+                assign card_image = selected_product.featured_image 
+                elsif preferred_source == 'collection' and category 
+                assign card_title = category.title 
+                assign card_link = category.url 
+                assign card_image = category.image | default: category.products.first.featured_image 
+                elsif selected_product 
+                assign card_title = selected_product.title 
+                assign card_link = selected_product.url 
+                assign card_image = selected_product.featured_image 
+                elsif category 
+                assign card_title = category.title 
+                assign card_link = category.url 
+                assign card_image = category.image | default: category.products.first.featured_image 
+                endif
+                %} 
+              {% endcomment %}
 
               {% liquid
                 assign category = block.settings.collection
                 assign selected_product = block.settings.product
-                assign preferred_source = block.settings.card_source | default: 'collection'
 
                 assign card_title = blank
                 assign card_link = blank
                 assign card_image = blank
 
-                if preferred_source == 'product' and selected_product
+                if selected_product
                   assign card_title = selected_product.title
                   assign card_link = selected_product.url
                   assign card_image = selected_product.featured_image
-                elsif preferred_source == 'collection' and category
-                  assign card_title = category.title
-                  assign card_link = category.url
-                  assign card_image = category.image | default: category.products.first.featured_image
-                elsif selected_product
-                  assign card_title = selected_product.title
-                  assign card_link = selected_product.url
-                  assign card_image = selected_product.featured_image
+
                 elsif category
                   assign card_title = category.title
                   assign card_link = category.url
@@ -52,32 +66,24 @@
 
               {% if card_link and card_title %}
                 {% render 'ui-product-card'
-                  ,
- image: card_image
-                  ,
- title: card_title
-                  ,
- link: card_link
-                %}
+                  , image: card_image
+                  , title: card_title
+                  , link: card_link %}
               {% endif %}
-
             </li>
-
           {% endfor %}
-
         </ul>
-
       </div>
 
       <div class="ui-category-slider__nav" slider-nav>
         {%- liquid
-          render 'm-slider-scroll-indicator' -%}
+          render 'm-slider-scroll-indicator'
+        -%}
         {%- liquid
-          render 'm-slider-btn' -%}
+          render 'm-slider-btn'
+        -%}
       </div>
-
     </slider-interface>
-
   </div>
 </section>
 
