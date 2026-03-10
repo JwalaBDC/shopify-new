@@ -23,13 +23,13 @@
             <li class="ui-category-slider__item" slider-card>
 
               {% comment %} {% render 'ui-product-card'
-                                                ,
-                                 image: block.settings.image
-                                                ,
-                                 title: block.settings.title
-                                                ,
-                                 link: block.settings.link
-                                          %} {% endcomment %}
+                                                                                ,
+                                                                 image: block.settings.image
+                                                                                ,
+                                                                 title: block.settings.title
+                                                                                ,
+                                                                 link: block.settings.link
+                                                                      %} {% endcomment %}
 
               {% assign category = block.settings.collection %}
 
@@ -98,19 +98,9 @@
         "name": "Category",
         "settings": [
           {
-            "type": "image_picker",
-            "id": "image",
-            "label": "Category Image"
-          },
-          {
-            "type": "text",
-            "id": "title",
-            "label": "Category Title"
-          },
-          {
-            "type": "url",
-            "id": "link",
-            "label": "Category Link"
+            "type": "collection",
+            "id": "collection",
+            "label": "Select category"
           }
         ]
       }
