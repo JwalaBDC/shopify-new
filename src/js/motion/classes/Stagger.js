@@ -88,7 +88,7 @@ export default class Stagger {
 				if (!staggerElement.hasAttribute("data-stagger-motion-retrigger-target")) continue;
 			}
 			const staggerMotionType = staggerElement.dataset.staggerMotionType ?? "sm";
-			const elementAnimationOrder = parseInt(staggerElement.dataset.staggerMotionIndex) - 1;
+			const elementAnimationOrder = this.getAnimationOrder(staggerElement);
 			let { duration, ease } = this.animationConfig[staggerMotionType];
 			const delay = this.stagger * elementAnimationOrder;
 			staggerElement.dataset.staggerMotionDelay = delay;
@@ -110,7 +110,7 @@ export default class Stagger {
 		for (const staggerElement of elements) {
 			if (!this.staggerElements.includes(staggerElement)) this.staggerElements.push(staggerElement);
 			const staggerMotionType = staggerElement.dataset.staggerMotionType ?? "sm";
-			const elementAnimationOrder = parseInt(staggerElement.dataset.staggerMotionIndex) - 1;
+			const elementAnimationOrder = this.getAnimationOrder(staggerElement);
 			let { y } = this.animationConfig[staggerMotionType];
 			let { duration, ease } = this.animationConfig[staggerMotionType];
 			const delay = 0.05 * elementAnimationOrder;
@@ -167,5 +167,10 @@ export default class Stagger {
 		for (const motionRetrigger of motionRetriggers) {
 			motionRetrigger.addEventListener("click", this.retriggerAnimation.bind(this));
 		}
+	}
+	getAnimationOrder(staggerElement) {
+		const rawIndex = parseInt(staggerElement.dataset.staggerMotionIndex, 10);
+		if (Number.isNaN(rawIndex)) return 0;
+		return rawIndex > 0 ? rawIndex - 1 : 0;
 	}
 }

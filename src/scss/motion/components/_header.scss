@@ -1,5 +1,5 @@
-// @use "@abstracts" as *;
-// @use "@motion-abstracts" as motion;
+@use "../abstracts" as motion;
+
 [data-motion="header"] {
 	//Header
 	animation-duration: var(--duration-500);

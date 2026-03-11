@@ -19,6 +19,9 @@ import "./helpers/ScrollToSection.js";
 import "./helpers/Breadcrumb.js";
 import "./helpers/PlaceholderSuggestions.js";
 import "./helpers/CardQuickAddToggle.js";
+/* motion */
+import "./motion/observers/MotionObserver.js";
+import "./motion/observers/StaggerMotionObserver.js";
 
 
 /* ui-component */

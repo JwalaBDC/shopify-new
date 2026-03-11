@@ -1,6 +1,6 @@
 //Stagger Group Motion
-// @use "@abstracts" as *;
-// @use "@motion-abstracts" as motion;
+@use "../../abstracts" as *;
+
 //Fade
 [data-motion-observer="css-class"][data-motion-observer-classes="fade-images-in"] {
 	transform: translateY(120px);

@@ -1,4 +1,5 @@
-// @use "@motion-abstracts" as motion;
+@use "../abstracts" as motion;
+
 //Define root variables for durations
 @mixin create-duration-root-variables($map) {
 	@each $duration-name, $duration-value in $map {

@@ -2,6 +2,9 @@ import CSSClass from "../classes/CSSClass.js";
 import ImageReveal from "../classes/ImageReveal.js";
 import SectionalBanner from "../classes/SectionalBanner.js";
 import SplitTitle from "../classes/SplitTitle.js";
+
+console.log("MOTION OBSERVER LOADED");
+
 class MotionObserver {
 	constructor() {
 		this.element = document.documentElement;

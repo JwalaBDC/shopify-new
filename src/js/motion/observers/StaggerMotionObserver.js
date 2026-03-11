@@ -1,4 +1,7 @@
 import Stagger from "../classes/Stagger.js";
+
+console.log("Stagger OBSERVER LOADED");
+
 class StaggerMotionObserver {
 	constructor() {
 		this.element = document.documentElement;

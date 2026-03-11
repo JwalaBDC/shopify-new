@@ -5,7 +5,7 @@ const path = require("path");
 const SRC_DIR = path.resolve(__dirname);
 const ASSETS_JS_DIR = path.resolve(__dirname, "../../assets/js");
 const IGNORED_FOLDERS = new Set(["00-godrej-reference"]);
-const IGNORED_FILES = new Set(["minify.js", "minify-dist.js"]);
+const IGNORED_FILES = new Set(["minify.js", "minify-dist.js", "watch-js.js"]);
 
 function shouldIgnore(filePath) {
   const normalized = filePath.replace(/\\/g, "/");

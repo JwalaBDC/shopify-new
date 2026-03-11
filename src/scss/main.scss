@@ -17,7 +17,11 @@
 // @use 'layout/header';
 // @use 'layout/footer';
 
-
+/* =========================================
+   MOTION
+========================================= */
+@use "./motion/base/index" as motion-base;
+@use "./motion/components/index" as motion-components;
 
 /* =========================================
    Molecules

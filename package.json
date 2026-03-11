@@ -7,7 +7,7 @@
     "pull_theme": "shopify theme pull --theme 155627618453",
     "build:scss": "node src/scss/build-scss.js",
     "build:scss:watch": "node src/scss/build-scss.js --watch",
-    "build:js": "babel src/js --out-dir assets/js --ignore node_modules,src/js/minify.js,src/js/minify-dist.js,**/*.bkp.js,**/.DS_Store && node src/js/minify.js",
+    "build:js": "babel src/js --out-dir assets/js --ignore node_modules,src/js/minify.js,src/js/minify-dist.js,src/js/watch-js.js,**/*.bkp.js,**/.DS_Store && node src/js/minify.js",
     "build:js:watch": "node src/js/watch-js.js",
     "build": "npm run build:scss && npm run build:js"
   },

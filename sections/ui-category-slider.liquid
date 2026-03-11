@@ -11,12 +11,18 @@
     <slider-interface>
       <div class="ui-category-slider__wrapper">
         <ul
+          data-stagger-motion-observer
           class="ui-category-slider__list ui-category-slider--{{ section.settings.cards_per_row }}"
           slider-card-list
           data-cards-per-slide="{{ section.settings.cards_per_row }}"
         >
           {% for block in section.blocks %}
-            <li class="ui-category-slider__item" slider-card>
+            <li
+              class="ui-category-slider__item"
+              slider-card
+              data-stagger-motion-index="{{ forloop.index0 }}"
+              data-stagger-motion-type="md"
+            >
               {% comment %}
                 {% liquid
                 assign category = block.settings.collection

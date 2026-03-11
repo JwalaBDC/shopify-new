@@ -1,10 +1,6 @@
-@forward "./header";
-@forward "./sticky-header";
-//@forward "./hero";
-@forward "./hero-2";
-@forward "./sectional-banner";
-@forward "./stagger";
-@forward "./css-class";
-@forward "./image-reveal";
-@forward "./quickglance";
-@forward "./split-title";
+@use "./header";
+@use "./sticky-header";
+@use "./stagger";
+@use "./css-class";
+@use "./image-reveal";
+@use "./split-title";
